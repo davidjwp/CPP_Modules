@@ -1,28 +1,29 @@
 #include <iostream>
+#include <cctype>
+
+#define EM_MEGA "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
 class upper {
 	public:
-	bool	alpha(char c){
-		if ((c >=  65 && c <= 90) || (c >= 97 && c <= 122))
-			return true;
-		return false;
-	}
 	void	up(char c){
-		alpha(c) ? (std::cout << c ? :) : return;
+		isalpha(c) ? (islower(c) ? std::cout << (char)toupper(c) : std::cout << c) : std::cout << c;
 	}
 };
 
 int	main(int ac, char **av)
 {
 	upper	up;
-	
+
 	if (ac < 2)
-		return 0;
-	while (*av)
+		return (std::cout << EM_MEGA << std::endl, 0);
+	while (*(++av))
 	{
 		while (**av)
-			up.up(**av++);
-		*av++;
+			up.up(*(*av)++);
+		if ((**av) + 1)
+			std::cout << ' ' ;
 	}
+	std::cout << std::endl;
 	return 0;
 }
+//c++ -Werror -Wall -Wextra -std=c++98 -g3 megaphone.cpp -o mega
