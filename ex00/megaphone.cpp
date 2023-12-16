@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <string>
 
 const std::string LOUD_FEEDBACK = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 
@@ -17,8 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (std::cout << LOUD_FEEDBACK << std::endl, 0);
-	while (*(++av))
-	{
+	while (*(++av)){
 		while (**av)
 			up.up(*(*av)++);
 		if ((**av) + 1)
