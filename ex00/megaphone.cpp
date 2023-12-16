@@ -1,21 +1,22 @@
 #include <iostream>
 #include <cctype>
 
-#define EM_MEGA "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+const std::string LOUD_FEEDBACK = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 
-class upper {
-	public:
+class UpperCase {
+public:
 	void	up(char c){
-		isalpha(c) ? (islower(c) ? std::cout << (char)toupper(c) : std::cout << c) : std::cout << c;
+		std::isalpha(c) ? (islower(c) ? std::cout << (char)toupper(c) : std::cout << c) : std::cout << c;
 	}
 };
 
 int	main(int ac, char **av)
 {
-	upper	up;
+	UpperCase	up;
+
 
 	if (ac < 2)
-		return (std::cout << EM_MEGA << std::endl, 0);
+		return (std::cout << LOUD_FEEDBACK << std::endl, 0);
 	while (*(++av))
 	{
 		while (**av)
