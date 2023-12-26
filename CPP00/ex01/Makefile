@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+         #
+#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/24 14:34:26 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/25 15:30:29 by davidjwp         ###   ########.fr        #
+#    Updated: 2023/12/26 19:03:55 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wextra -Werror -Wall
 
-HEADER	= PhoneBook.class.hpp Contact.class.hpp
+HEADER	= main.hpp Contact.class.hpp PhoneBook.class.hpp 
 
-SRCS	= 	PhoneBook.cpp \
-			Contact.cpp \
+SRCS	= 	Contact.cpp \
 			main.cpp \
+			PhoneBook.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 

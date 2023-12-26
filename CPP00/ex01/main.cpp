@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:31:50 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/25 22:23:35 by davidjwp         ###   ########.fr       */
+/*   Updated: 2023/12/26 19:37:05 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
-#include <iostream>
-#include <cstring>
+#include "main.hpp"
 
 int	main(void)
 {
 	PhoneBook	PB;
 	std::string	input;
+	int	nLastAdd = 0;
 
-	while ("ok"){
-		std::cin >> input, std::cout << std::endl;
-
+	std::cout << GRE << "Input: " << RES;
+	while (std::cin >> input){
 		if (!std::strcmp(input.c_str(), "ADD")){
-			PB.add(std::cin >> std::string name, std::cin);
+			PB.cont[nLastAdd].add();
+			nLastAdd++;
 		}
-		else if (!strcmp((const char *)input, "SEARCH")){
-			
+		else if (!std::strcmp(input.c_str(), "SEARCH")){
+			PB.Search();
 		}
-		else if (!strcmp((const char *)input, "EXIT"))
+		else if (!std::strcmp(input.c_str(), "EXIT"))
 			break ;
 		else
-			std::cout << "\t\033[101mwrong input\033[0m\n\033[1;92mADD / SEARCH / EXIT\033[0m\n" << std::endl;
-		
+			std::cout << '\t' << RED << "wrong input" << RES << '\n' << GRE << "ADD / SEARCH / EXIT\n" << RES << std::endl;
+		if (nLastAdd == 8)
+			nLastAdd = 0;
+		std::cout << GRE << "Input: " << RES;
 	}
 
 	return (0);
