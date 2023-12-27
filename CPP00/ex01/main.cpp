@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:31:50 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/27 13:21:37 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/27 16:42:42 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(void)
 	while (std::getline(std::cin, input)){
 		if (!std::strcmp(input.c_str(), "ADD")){
 			PB.cont[nLastAdd].add();
-			nLastAdd++;
+			if (PB.cont[nLastAdd].set)
+				nLastAdd++;
 		}
 		else if (!std::strcmp(input.c_str(), "SEARCH")){
 			PB.Search();

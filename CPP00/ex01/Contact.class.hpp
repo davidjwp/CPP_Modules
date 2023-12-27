@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:48:34 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/27 13:39:20 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/27 18:52:01 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 class Contact {
 private:
-	std::string	pnumb;
-	std::string	dsecr;
-	std::string fname;
-	std::string	lname;
-	std::string	nname;
+	std::string	_pnumb;
+	std::string	_dsecr;
+	std::string _fname;
+	std::string	_lname;
+	std::string	_nname;
 public:
 	int		Index;
 	bool	set;

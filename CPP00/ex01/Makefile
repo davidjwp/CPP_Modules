@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/24 14:34:26 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/27 15:01:32 by djacobs          ###   ########.fr        #
+#    Updated: 2023/12/27 17:17:39 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= PhoneBook
 
 CC		= c++
 
-CFLAGS	= -g -std=c++98 -Wextra -Werror -Wall
+CFLAGS	= -g3 -std=c++98 -Wextra -Werror -Wall
 
 HEADER	= main.hpp Contact.class.hpp PhoneBook.class.hpp 
 
@@ -25,9 +25,6 @@ SRCS	= 	Contact.cpp \
 OBJS	= $(SRCS:.cpp=.o)
 
 
-debug: 
-	$(eval CC := g++)
-
 all:$(NAME)
 
 $(NAME): $(OBJS)
@@ -37,7 +34,7 @@ $(NAME): $(OBJS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean: 
-	rm *.o
+	rm -f $(OBJS)
 
 fclean: clean
 	rm $(NAME)
