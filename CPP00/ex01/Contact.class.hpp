@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 15:48:34 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/26 19:21:27 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/27 13:39:20 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ public:
 	void	add(void);
 	void	getInfo(void) const;
 	void	getCont(void) const;
+	void	emptyContact(void);
+
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:24:41 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/26 18:59:25 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/27 13:34:44 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,13 @@ void PhoneBook::Search(void) const
 {
 	std::string Index;
 	
-	//writing the contacts info 
+	//Contact list
 	std::cout << "   Index  |First Name| Last Name| Nickname " << std::endl;	
-	for (int i = 0; i < 8; i++){
-		if (this->cont->set)
-			this->cont[i].getInfo();
-	}
+	for (int i = 0; i < 8; i++)
+		this->cont[i].getInfo();
 
 	std::cout << GRE << "Enter Index: " << RES;
-	std::cin >> Index;
+	std::getline(std::cin, Index);
 	std::cout << std::endl;
 
 	//checking the index
@@ -51,11 +49,15 @@ void PhoneBook::Search(void) const
 		std::cout << '\t' << RED << "Error index too high" << RES << std::endl;
 		return;
 	}
-
-	this->cont[nIndex].getCont();
+	if (this->cont[nIndex].set)
+		this->cont[nIndex].getCont();
+	else
+		std::cout << "Contact Index " << nIndex << " undefined" << std::endl;
 }
 
 /*
    Index  |First Name| Last Name| Nickname 
           |          |          |          
 */
+
+//empty contacts are not handled properly, it should not fill
