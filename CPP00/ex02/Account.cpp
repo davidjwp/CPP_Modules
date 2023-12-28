@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:51:15 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/27 20:58:30 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/28 01:32:27 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int	Account::_totalNbWithdrawals = 0;
 Account::Account(void){}
 
 Account::~Account(void){
+	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ';';
 	std::cout << "amount:" << this->_amount << ';';
 	std::cout << "closed" << std::endl;
 }
 
 Account::Account(int deposit){
+	Account::_displayTimestamp();
 	this->_nbDeposits = 0;
 	this->_accountIndex = Account::_nbAccounts++;
 	this->_amount = deposit;
@@ -56,6 +58,7 @@ int	Account::getNbWithdrawals(void){
 }
 
 void	Account::displayAccountsInfos(void){
+	Account::_displayTimestamp();
 	std::cout << "accounts:" << getNbAccounts() << ';';
 	std::cout << "total:" << getTotalAmount() << ';';
 	std::cout << "deposits:" << getNbDeposits() << ';';
@@ -95,17 +98,13 @@ void	Account::displayStatus(void) const{
 }
 
 void	Account::_displayTimestamp(void){
-	std::time_t 
+	std::time_t now = std::localtime();
+	std::tm *ptm = std::localtime(&now);
+
+	if (ptm == NULL){
+		std::cerr << "local time conversion error." << std::endl;
+		return;
+	}
+
+	std::cout << '[' << std::put_time(ptm, "%Y%m%d_%H%M%S") << "] "; 
 }
-
-//	static void	_displayTimestamp( void );
-
-//	int				_accountIndex;
-//	int				_amount;
-//	int				_nbDeposits;
-//	int				_nbWithdrawals;
-
-//	Account( void );
-
-//};
-

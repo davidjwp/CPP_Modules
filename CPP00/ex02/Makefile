@@ -5,35 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: david <david@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/24 14:34:26 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/28 01:22:02 by david            ###   ########.fr        #
+#    Created: 2023/12/28 01:00:36 by david             #+#    #+#              #
+#    Updated: 2023/12/28 01:26:02 by david            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= PhoneBook
+NAME	= Acc
 
 CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wextra -Werror -Wall
 
-HEADER	= main.hpp Contact.class.hpp PhoneBook.class.hpp 
+HEADER	= Account.hpp
 
-SRCS	= 	Contact.cpp \
-			main.cpp \
-			PhoneBook.cpp \
+SRCS	= 	Account.cpp \
+			tests.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
-
 all:$(NAME)
 
-$(NAME): $(OBJS)
+$(NAME):$(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp $(HEADER)
 	$(CC) -c $(CFLAGS) $< -o $@
 
-clean: 
+clean:
 	rm -f $(OBJS)
 
 fclean: clean
@@ -41,5 +39,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean re fclean
-
+.PHONY:clean re fclean
+	
