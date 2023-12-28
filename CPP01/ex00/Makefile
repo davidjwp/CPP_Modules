@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
+#    By: david <david@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 19:51:34 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/28 19:51:54 by djacobs          ###   ########.fr        #
+#    Updated: 2023/12/28 23:22:18 by david            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 
+NAME	= Zombie
 
 CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wextra -Werror -Wall
 
-HEADER	=  
+HEADER	= Zombie.hpp
 
-SRCS	= 	
+SRCS	= Zombie.cpp main.cpp newZombie.cpp randomChump.cpp 
 
 OBJS	= $(SRCS:.cpp=.o)
 
