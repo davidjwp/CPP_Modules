@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:51:15 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/28 01:32:27 by david            ###   ########.fr       */
+/*   Updated: 2023/12/28 13:39:55 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,35 @@ void	Account::displayAccountsInfos(void){
 }
 
 void	Account::makeDeposit(int deposit){
+	Account::_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ':';
+	std::cout << "p_amount:" << this->_amount << ':';
 	this->_amount += deposit;
-	this->_totalNbDeposits += 1;
 	this->_nbDeposits += 1;
 	Account::_totalNbDeposits += 1;
 	Account::_totalAmount += deposit;
+	std::cout << "deposit:" << deposit << ';';
+	std::cout << "amount:" << this->_amount << ';';
+	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 }
 
 bool	Account::makeWithdrawal(int withdrawal){
-	if (withdrawal > this->_amount || withdrawal < 0)
-		return false;
-	else{
+	Account::_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ':';
+	std::cout << "p_amount:" << this->_amount << ':';
+	if (withdrawal <= this->_amount && withdrawal > 0){
+		
 		this->_amount -= withdrawal;
 		this->_nbWithdrawals += 1;
 		Account::_totalAmount -= withdrawal;
 		Account::_totalNbWithdrawals += 1;
+		std::cout << "withdrawal:" << withdrawal << ';';
+		std::cout << "amount:" << this->_amount << ';';
+		std::cout << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 		return true;
 	}
+	std::cout << "withdrawal:" << "refused" << std::endl;
+	return false;
 }
 
 int	Account::checkAmount(void) const{
@@ -98,13 +110,11 @@ void	Account::displayStatus(void) const{
 }
 
 void	Account::_displayTimestamp(void){
-	std::time_t now = std::localtime();
-	std::tm *ptm = std::localtime(&now);
+	std::time_t raw;
+	time(&raw);
+	std::tm 	*local = localtime(&raw);
+	char		buf[42];
+	strftime(buf, 42, "[%Y%m%e_%H%M%S] ", local);
 
-	if (ptm == NULL){
-		std::cerr << "local time conversion error." << std::endl;
-		return;
-	}
-
-	std::cout << '[' << std::put_time(ptm, "%Y%m%d_%H%M%S") << "] "; 
+	std::cout << buf; 
 }
