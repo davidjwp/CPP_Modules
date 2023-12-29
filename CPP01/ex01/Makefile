@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: david <david@student.42.fr>                +#+  +:+       +#+         #
+#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 19:51:34 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/28 23:22:18 by david            ###   ########.fr        #
+#    Updated: 2023/12/29 14:38:52 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS	= -g3 -std=c++98 -Wextra -Werror -Wall
 
 HEADER	= Zombie.hpp
 
-SRCS	= Zombie.cpp main.cpp newZombie.cpp randomChump.cpp 
+SRCS	= Zombie.cpp main.cpp zombieHorde.cpp  
 
 OBJS	= $(SRCS:.cpp=.o)
 
