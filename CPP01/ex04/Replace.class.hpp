@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:36:00 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 20:45:03 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/29 21:35:17 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@
 class	Replace{
 
 private:
-	const	std::ifstream	*in;
-	const	std::ofstream	*out;
+	std::ifstream	*in;
+	std::ofstream	*out;
 	std::string		s1;
 	std::string		s2;
 
 public:
 	Replace(void);
-	Replace(const std::ifstream &infile, const std::ofstream &outfile, std::string s1, std::string s2);
+	Replace(std::ifstream &infile, std::ofstream &outfile, std::string s1, std::string s2);
 	~Replace(void);
-	void	replaceFile(void) const;
+	void	replaceFile(void);
 };
 
 void	error(std::string msg);

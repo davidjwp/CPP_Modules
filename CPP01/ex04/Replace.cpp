@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:38:37 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 20:59:15 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/29 21:40:10 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ Replace::Replace(void){}
 
 Replace::~Replace(void){}
 
-Replace::Replace(const std::ifstream &infile, const std::ofstream &outfile, std::string s1, std::string s2)
+Replace::Replace(std::ifstream &infile, std::ofstream &outfile, std::string s1, std::string s2)
 : in(&infile), out(&outfile), s1(s1), s2(s2){}
 
-void	Replace::replaceFile(void)	const{
+void	Replace::replaceFile(void){//this is unfinished
 	std::string	cont;
 
-	while (std::getline(this->in, cont)){
+	while (std::getline(*(this->in), cont)){
 		if (!this->in->eof())
 			cont += '\n';
-		*this->out << s1;
+		while (cont.find(this->s1) != -1){
+			
+		}
+			
+		*(this->out) << cont;
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 19:51:34 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/29 20:51:57 by djacobs          ###   ########.fr        #
+#    Updated: 2023/12/29 21:17:36 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wextra -Werror -Wall
 
-SRCS	=  main.cpp
+SRCS	=  main.cpp Replace.cpp
 
 HEADER	= Replace.class.hpp
 

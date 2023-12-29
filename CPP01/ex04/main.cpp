@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:25:06 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 21:11:31 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/29 21:17:02 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 
 	std::string file = (const char *)av[1];
 	std::ifstream	infile(file.c_str());
-	std::ofstream	outfile(file + ".replace");
+	std::ofstream	outfile((file.append(".replace")).c_str());//file is changed here careful not to use it again
 	if (!infile.is_open() || !outfile.is_open()){
 		error("file stream not open");
 		return 0;
