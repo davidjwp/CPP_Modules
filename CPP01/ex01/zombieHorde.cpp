@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 17:40:12 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 12:26:58 by david            ###   ########.fr       */
+/*   Created: 2023/12/29 12:29:41 by david             #+#    #+#             */
+/*   Updated: 2023/12/29 12:48:43 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Zombie"
 
-int	main(void)
-{
-	randomChump((std::string)"jose");
-	Zombie	*nZombie = newZombie((std::string)"john");
-	nZombie->announce();
-	delete nZombie;
-	return 0;
+Zombie  *zombieHorde(int N, std::string name){
+    
+    return ()
 }
