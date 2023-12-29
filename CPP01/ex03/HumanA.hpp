@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:40:54 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 15:56:29 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/29 18:02:53 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ class	HumanA{
 		
 	public:
 		HumanA(void);
-		HumanA(std::string name, Weapon w);
+		HumanA(std::string name, Weapon &wp);
 		~HumanA(void);
 		void	attack(void) const;
 		
-		Weapon	&w;
+		Weapon	&w1;
 };
 
 #endif

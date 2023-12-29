@@ -6,10 +6,11 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:29:51 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 15:54:04 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/29 18:14:22 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "Weapon.hpp"
 #include "HumanA.hpp"
 #include "HumanB.hpp"
