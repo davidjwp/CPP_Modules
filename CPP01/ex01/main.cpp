@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:40:12 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 12:30:05 by david            ###   ########.fr       */
+/*   Updated: 2023/12/29 13:24:44 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	main(void)
 {
+	Zombie	*Horde = zombieHorde(42, "jose");
+	for (int i = 0; i < 42; i++)
+		Horde[i]
 	return 0;
 }
