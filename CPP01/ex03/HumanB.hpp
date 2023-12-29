@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:37:04 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 15:46:19 by djacobs          ###   ########.fr       */
+/*   Updated: 2023/12/29 17:10:37 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class	HumanB{
 		HumanB(void);
 		~HumanB(void);
 		void	attack(void) const;
+		void	setWeapon(Weapon wp);
 		
 		Weapon	*w;
 };
