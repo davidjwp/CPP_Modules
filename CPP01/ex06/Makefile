@@ -6,11 +6,11 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 19:51:34 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/30 16:43:32 by djacobs          ###   ########.fr        #
+#    Updated: 2023/12/30 19:20:17 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Harl
+NAME	= HarlFilter
 
 CC		= c++
 
