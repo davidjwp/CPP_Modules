@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:37:17 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/03 17:32:28 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/03 18:08:21 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main( void )
 
 	std::cout << a + b << std::endl;
 	std::cout << a + 2 << std::endl;
-	std::cout << a + b << std::endl;
+	std::cout << (a + 1) * b << std::endl;
 	std::cout << a + b << std::endl;
 	std::cout << a + b << std::endl;
 	std::cout << a + b << std::endl;
