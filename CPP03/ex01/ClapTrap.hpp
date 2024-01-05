@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:59:18 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/05 19:38:00 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/05 22:16:07 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 class	ClapTrap{
 
-private:
-
+protected:
 	std::string	_Name;
 	int			_Hp;
 	int			_Ep;
