@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:48:46 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/06 15:21:45 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/06 19:53:59 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <string>
 
-class	ScavTrap: public ClapTrap {
+class	ScavTrap: virtual public ClapTrap {
 
 public:
 

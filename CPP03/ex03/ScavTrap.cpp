@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:48:24 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/06 15:39:41 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/06 15:39:18 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ ScavTrap::ScavTrap(void): ClapTrap(){
 	this->setAd(20);
 }
 
-ScavTrap::ScavTrap(ScavTrap& cpy): ClapTrap(cpy){
-	std::cout << "Copy ScavTrap constructor called" << std::endl;
-	*this = cpy;
-}
-
 ScavTrap::ScavTrap(std::string n): ClapTrap(n){
 	std::cout << "Named ScavTrap constructor called" << std::endl;
 	this->_Hp = 100;
 	this->_Ep = 50;
 	this->setAd(20);
+}
+
+ScavTrap::ScavTrap(ScavTrap& cpy): ClapTrap(cpy){
+	std::cout << "Copy ScavTrap constructor called" << std::endl;
+	*this = cpy;
 }
 
 ScavTrap::ScavTrap(std::string name, int ad): ClapTrap(name, ad){

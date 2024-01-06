@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:19:08 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/06 15:39:28 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/06 15:40:12 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,33 @@
 #include <iostream>
 
 ClapTrap::ClapTrap(void){
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default ClapTrap constructor called" << std::endl;
 	this->_Name = "Default";
 	this->_Hp = 10;
 	this->_Ep = 10;
-	this->setAd(0);
+	this->_Ad = 0;
 }
 
 ClapTrap::ClapTrap(std::string n): _Name(n){
-	std::cout << "Name constructor called" << std::endl;
+	std::cout << "Named ClapTrap constructor called" << std::endl;
 	this->_Hp = 10;
 	this->_Ep = 10;
 	this->setAd(0);
 }
 
 ClapTrap::ClapTrap(std::string n, int ad): _Name(n), _Ad(ad){
-	std::cout << "Name/Ad constructor called" << std::endl;
+	std::cout << "Name/Ad " << n << " ClapTrap constructor called" << std::endl;
 	this->_Hp = 10;
 	this->_Ep = 10;
 }
 
 ClapTrap::ClapTrap(ClapTrap& src){
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy ClapTrap constructor called" << std::endl;
 	*this = src;
 }
 
 ClapTrap::~ClapTrap(void){
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " destructor called" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator=(ClapTrap& c1){
@@ -56,10 +56,14 @@ void	ClapTrap::setAd(int ad){
 	this->_Ad = ad;
 }
 
+void	ClapTrap::setEp(int ep){
+	this->_Ep = ep;
+}
+
 void	ClapTrap::attack(const std::string& target){
 	if (this->_Hp && this->_Ep) {
 		this->_Ep--;
-		std::cout << this->_Name << " attacks " << target << std::endl;
+		std::cout << "ClapTrap " << this->_Name << " attacks " << target << std::endl;
 	}
 	else
 		std::cout << this->_Name << " tries to attack " << target << \

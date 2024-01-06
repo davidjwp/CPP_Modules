@@ -6,19 +6,19 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/01/06 14:41:54 by djacobs          ###   ########.fr        #
+#    Updated: 2024/01/06 15:28:43 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Scav
+NAME	= Frag
 
 CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wall -Werror -Wextra
 
-HEADER	= ClapTrap.hpp ScavTrap.hpp
+HEADER	= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
-SRCS	= ClapTrap.cpp ScavTrap.cpp main.cpp
+SRCS	= ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

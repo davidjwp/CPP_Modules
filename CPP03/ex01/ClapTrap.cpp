@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:19:08 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/06 00:04:35 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/06 15:39:35 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 ClapTrap::ClapTrap(void){
-	std::cout << "Default ClapTrap created" << std::endl;
+	std::cout << "Default ClapTrap constructor called" << std::endl;
 	this->_Name = "Default";
 	this->_Hp = 10;
 	this->_Ep = 10;
@@ -23,25 +23,25 @@ ClapTrap::ClapTrap(void){
 }
 
 ClapTrap::ClapTrap(std::string n): _Name(n){
-	std::cout << "Named ClapTrap created" << std::endl;
+	std::cout << "Named ClapTrap constructor called" << std::endl;
 	this->_Hp = 10;
-	this->_Hp = 10;
-	this->setAd(1);
+	this->_Ep = 10;
+	this->setAd(0);
 }
 
 ClapTrap::ClapTrap(std::string n, int ad): _Name(n), _Ad(ad){
-	std::cout << "Name/Ad constructor called" << std::endl;
+	std::cout << "Name/Ad " << n << " ClapTrap constructor called" << std::endl;
 	this->_Hp = 10;
 	this->_Ep = 10;
 }
 
 ClapTrap::ClapTrap(ClapTrap& src){
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy ClapTrap constructor called" << std::endl;
 	*this = src;
 }
 
 ClapTrap::~ClapTrap(void){
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " destructor called" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator=(ClapTrap& c1){
@@ -56,14 +56,18 @@ void	ClapTrap::setAd(int ad){
 	this->_Ad = ad;
 }
 
+void	ClapTrap::setEp(int ep){
+	this->_Ep = ep;
+}
+
 void	ClapTrap::attack(const std::string& target){
 	if (this->_Hp && this->_Ep) {
 		this->_Ep--;
-		std::cout << this->_Name << " attacks " << target << std::endl;
+		std::cout << "ClapTrap " << this->_Name << " attacks " << target << std::endl;
 	}
 	else
 		std::cout << this->_Name << " tries to attack " << target << \
-		(!this->_Hp ? " but they are dead" : " but they have no energy") << std::endl;
+		(!this->_Hp ? " but it is dead" : " but it has no energy") << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount){
@@ -86,8 +90,8 @@ void	ClapTrap::beRepaired(unsigned int amount){
 		std::cout << this->_Name << " repairs " << amount << " health points" << std::endl;
 	}
 	else
-		std::cout << this->_Name << " tries to repair itself but they " << \
-		(!this->_Hp ? "are dead" : "have no energy") << std::endl;
+		std::cout << this->_Name << " tries to repair itself but it " << \
+		(!this->_Hp ? "is dead" : "has no energy") << std::endl;
 }
 
 std::string&	ClapTrap::getName(void){
