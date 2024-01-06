@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:25:52 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/06 21:29:04 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/07 00:13:56 by davidjwp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ Dog::~Dog(void){
 Dog&	Dog::operator=(Dog& a1){
 	this->type = a1.type;
 	return *this;
+}
+
+void	Dog::makeSound(void) const{
+	std::cout << "Woof" << std::endl;
+}
+
+std::string	Dog::getType(void){
+	return this->type;
 }
