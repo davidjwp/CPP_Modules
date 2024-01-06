@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 19:48:24 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/05 21:43:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/06 00:07:24 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ScavTrap::ScavTrap(ScavTrap& cpy){
 	*this = cpy;
 }
 
-ScavTrap::ScavTrap(std::string& name, int ad): _Name(name), _Ad(ad){
+ScavTrap::ScavTrap(std::string name, int ad): _Name(name), _Ad(ad){
 	std::cout << "Name/ad ScavTrap created" << std::endl;
 	this->_Hp = 10;
 	this->_Ep = 10;
@@ -45,3 +45,10 @@ ScavTrap&	ScavTrap::operator=(ScavTrap& s1){
 	return *this;
 }
 
+void	ScavTrap::guardGate(void){
+	std::cout << "ScavTrap is now in Gate keeper mode"
+}
+
+void	ScavTrap::attack(std::string& target){
+	std::cout << "ScavTrap " << this->_Name << " attacks " << target << std::cout;
+}
