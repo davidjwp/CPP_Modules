@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:18:37 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 00:15:30 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/01/07 12:51:02 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ public:
 	~Cat(void);
 
 	Cat&	operator=(Cat& d1);
-	void	makeSound(void) const override;
-	std::string	getType(void) override;
+	virtual void	makeSound(void) const;
 };
 
 #endif

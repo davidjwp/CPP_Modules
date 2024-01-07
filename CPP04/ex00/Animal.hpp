@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:12:45 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 00:10:09 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/01/07 12:40:22 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 	Animal&	operator=(Animal& a1);
 
 	virtual void	makeSound(void) const;
-	virtual std::string	getType(void);
+	std::string	getType(void) const;
 };
 
 #endif
