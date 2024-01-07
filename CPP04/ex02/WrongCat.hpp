@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 21:15:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:53:03 by djacobs          ###   ########.fr       */
+/*   Created: 2024/01/07 12:57:04 by djacobs           #+#    #+#             */
+/*   Updated: 2024/01/07 13:15:26 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DOG_HPP
-# define DOG_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "WrongAnimal.hpp"
 
-class	Dog: public Animal{
-
-private:
-	Brain*	dogBrain;
+class	WrongCat: public WrongAnimal{
 
 public:
 
-	Dog(void);
-	Dog(Dog& cpy);
-	~Dog(void);
-
-	Dog&	operator=(Dog& d1);
-	virtual void	makeSound(void) const;
+	WrongCat(void);
+	WrongCat(WrongCat& cpy);
+	~WrongCat(void);
+	
+	WrongCat&	operator=(WrongCat& w1);
+	void	makeSound(void) const;
 };
 
 #endif

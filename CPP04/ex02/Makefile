@@ -6,11 +6,11 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/01/07 15:48:47 by djacobs          ###   ########.fr        #
+#    Updated: 2024/01/07 17:52:34 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Brain
+NAME	= Abstract
 
 CC		= c++
 

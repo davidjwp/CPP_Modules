@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 21:15:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:53:03 by djacobs          ###   ########.fr       */
+/*   Created: 2024/01/06 21:18:37 by djacobs           #+#    #+#             */
+/*   Updated: 2024/01/07 17:54:46 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DOG_HPP
-# define DOG_HPP
+#ifndef	CAT_HPP
+# define CAT_HPP
 
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class	Dog: public Animal{
+class	Cat: public AAnimal{
 
 private:
-	Brain*	dogBrain;
+	Brain*	catBrain;
 
 public:
 
-	Dog(void);
-	Dog(Dog& cpy);
-	~Dog(void);
+	Cat(void);
+	Cat(Cat& cpy);
+	virtual ~Cat(void);
 
-	Dog&	operator=(Dog& d1);
+	Cat&	operator=(Cat& d1);
 	virtual void	makeSound(void) const;
 };
 

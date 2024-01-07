@@ -1,34 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 21:15:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:53:03 by djacobs          ###   ########.fr       */
+/*   Created: 2024/01/07 18:35:51 by djacobs           #+#    #+#             */
+/*   Updated: 2024/01/07 18:36:05 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	DOG_HPP
-# define DOG_HPP
+#include "AMateria.hpp"
 
-#include "Animal.hpp"
-#include "Brain.hpp"
-
-class	Dog: public Animal{
-
-private:
-	Brain*	dogBrain;
-
-public:
-
-	Dog(void);
-	Dog(Dog& cpy);
-	~Dog(void);
-
-	Dog&	operator=(Dog& d1);
-	virtual void	makeSound(void) const;
-};
-
-#endif
