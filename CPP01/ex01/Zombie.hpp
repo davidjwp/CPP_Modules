@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:43:45 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 14:45:26 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:35:36 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ class	Zombie{
 		void	giveName(std::string name);
 };
 
-Zombie	*zombieHorde(int N, std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

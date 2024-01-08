@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: david <david@student.42.fr>                +#+  +:+       +#+         #
+#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 19:51:34 by djacobs           #+#    #+#              #
-#    Updated: 2023/12/28 23:22:18 by david            ###   ########.fr        #
+#    Updated: 2024/01/08 15:03:48 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ HEADER	= Zombie.hpp
 SRCS	= Zombie.cpp main.cpp newZombie.cpp randomChump.cpp 
 
 OBJS	= $(SRCS:.cpp=.o)
-
 
 all:$(NAME)
 

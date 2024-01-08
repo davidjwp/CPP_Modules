@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:40:12 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 15:28:38 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:43:18 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	std::cout << &brain << '\n' << &(*stringPTR) << '\n' << &stringREF << std::endl;
 	std::cout << brain << '\n' << *stringPTR << '\n' << stringREF << std::endl;
 
-	//stringREF = "OOPS WRONG BRAIN";
-	//std::cout << brain << '\n' << *stringPTR << '\n' << stringREF << std::endl;
+	stringREF = "OOPS WRONG BRAIN";
+	std::cout << brain << '\n' << *stringPTR << '\n' << stringREF << std::endl;
 	return 0;
 }

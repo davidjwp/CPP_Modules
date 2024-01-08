@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:34:36 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 15:54:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:55:25 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Weapon::~Weapon (void){}
 
 Weapon::Weapon (std::string t): type(t){} 
 
-const	std::string	Weapon::getType(void) const{
+const	std::string&	Weapon::getType(void) const{
 	return this->type;
 }
 

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:40:12 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 15:14:17 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:38:25 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,9 @@ int	main(void)
 	for (int i = 0; i < NUMBER; i++)
 		Horde[i].announce();
 	delete [] Horde;
+	Zombie	*otherHorde = zombieHorde(3, "santa");
+	for (int i = 0; i < 3; i++)
+		otherHorde[i].announce();
+	delete [] otherHorde;
 	return 0;
 }

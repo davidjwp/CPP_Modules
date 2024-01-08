@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:37:04 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/29 18:20:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 17:09:36 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class	HumanB{
 		HumanB(std::string n);
 		~HumanB(void);
 		void	attack(void) const;
-		void	setWeapon(Weapon& wp);
+		void	setWeapon(Weapon& w);
 		
 		Weapon	*w2;
 };
