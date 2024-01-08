@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:25:06 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/30 19:26:28 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 21:44:54 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(int ac, char **av)
 {
 	if (ac != 2 || !*av[1]){
-		std::cout << "no, fuck off" << std::endl;
+		std::cout << "no do it again like this\n" << "[DEBUG][INFO][WARNING][ERROR]" << std::endl;
 		return 0;
 	}
 

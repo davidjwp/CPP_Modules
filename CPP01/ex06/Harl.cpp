@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:36:47 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/30 19:37:46 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/08 21:43:20 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	Harl::complain(int index){
 			this->error();
 			break;
 		default:
-			std::cout << "wrong one dumbass" << std::endl;
+			std::cout << "wrong index" << std::endl;
 			break;
 	}
 }
