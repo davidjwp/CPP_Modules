@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:55:10 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/01/05 12:05:19 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:39:13 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class	Point{
 
 private:
-	Fixed	x;
-	Fixed	y;
+	const Fixed	x;
+	const Fixed	y;
 
 public:
 	Point(void);
@@ -27,7 +27,10 @@ public:
 	Point(const Point &src);
 	~Point(void);
 
-	Point	&operator=(const Point &p1);
+	Point	&operator=(const Point &p1);	
+	static bool	calT(const Point& a, const Point& b, const Point& c, const Point& point);
 };
+
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif

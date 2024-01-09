@@ -6,17 +6,18 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:40:12 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/08 15:38:25 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/09 12:23:10 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-#define NUMBER 12	
+#define NUMBER 4	
 
 int	main(void)
 {
 	Zombie	*Horde = zombieHorde(NUMBER, "david");
+
 	for (int i = 0; i < NUMBER; i++)
 		Horde[i].announce();
 	delete [] Horde;

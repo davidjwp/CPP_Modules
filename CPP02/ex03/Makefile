@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 17:08:21 by djacobs           #+#    #+#              #
-#    Updated: 2024/01/03 16:58:16 by djacobs          ###   ########.fr        #
+#    Updated: 2024/01/09 14:25:33 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wall -Wextra -Werror
 
-HEADER	= Fixed.hpp
+HEADER	= Fixed.hpp Point.hpp
 
-SRCS	= Fixed.cpp main.cpp
+SRCS	= Fixed.cpp Point.cpp main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
