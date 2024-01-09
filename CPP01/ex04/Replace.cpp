@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:38:37 by djacobs           #+#    #+#             */
-/*   Updated: 2023/12/30 14:33:54 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/09 11:33:25 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	Replace::replaceFile(void){
 			cont.insert(pos, s2);
 			pos += s1.size();
 		}
+		pos = 0;
 		*(this->out) << cont;
 	}
 }
