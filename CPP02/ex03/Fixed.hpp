@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:14:14 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/03 16:54:52 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/09 19:11:58 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ public:
 	static Fixed	min(const Fixed &f1, const Fixed &f2);
 	static int		max(const int i1, const int i2);
 	static Fixed	max(const Fixed &f1, const Fixed &f2);
-
-
 };
 
 std::ostream &	operator<<(std::ostream &o, const Fixed &instance);
