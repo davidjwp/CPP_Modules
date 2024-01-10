@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:25:52 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 19:21:56 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 20:09:35 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	Dog::makeSound(void) const{
 void	Dog::think(void) const{
 	for (int i = 0; i< 100; i++)
 		std::cout << dogBrain->getIdea(i) << ' ';
-	std::cout << std::endl;		
+	std::cout << std::endl;
 }
