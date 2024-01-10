@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:26:38 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:59:03 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:49:59 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,10 @@ Cat&	Cat::operator=(Cat& a1){
 
 void	Cat::makeSound(void) const{
 	std::cout << "Meow" << std::endl;
+}
+
+void	Cat::think(void) const{
+	for (int i = 0; i < 100; i++)
+		std::cout << catBrain->getIdea(i) << ' ';
+	std::cout << std::endl;
 }

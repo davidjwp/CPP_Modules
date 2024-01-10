@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:12:45 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 17:53:34 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:44:44 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ public:
 
 	virtual void	makeSound(void) const = 0;
 	std::string	getType(void) const;
+	virtual void	think(void) const;
 };
 
 #endif

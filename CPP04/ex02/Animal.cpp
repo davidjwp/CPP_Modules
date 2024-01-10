@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:19:47 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 17:53:44 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:44:46 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ AAnimal&	AAnimal::operator=(AAnimal& a1){
 	return *this;
 }
 
-void	AAnimal::makeSound(void) const{//BAD
+void	AAnimal::makeSound(void) const{
 	std::cout << "i am AAnimal" << std::endl;
 }
 
 std::string	AAnimal::getType(void) const{
 	return this->type;
 }
+
+void	AAnimal::think(void) const{}

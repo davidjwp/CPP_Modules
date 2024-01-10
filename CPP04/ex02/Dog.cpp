@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:25:52 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:58:49 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:49:27 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,10 @@ Dog&	Dog::operator=(Dog& a1){
 
 void	Dog::makeSound(void) const{
 	std::cout << "Woof" << std::endl;
+}
+
+void	Dog::think(void) const{
+	for (int i = 0; i < 100; i++)
+		std::cout << dogBrain->getIdea(i) << ' ';
+	std::cout << std::endl;
 }

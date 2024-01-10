@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:10:53 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 17:39:26 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:11:16 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ int	main(void){
 	delete j;//should not create a leak
 	delete i;
 
+	std::cout << std::endl;
 	const Animal* t[4];
 	for (int i = 0; i < 2; i++)
 		t[i] = new Dog();
 	for (int i = 2; i < 4; i++)
 		t[i] = new Cat();
+	for (int i = 0; i < 4; i++)
+		t[i]->think();
+	std::cout << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete t[i];
 	return 0;

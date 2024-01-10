@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:20:23 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:24:43 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:07:57 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public:
 	virtual ~Brain(void);
 
 	Brain& operator=(Brain& b1);
+	std::string	getIdea(const int i) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:15:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 17:54:43 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:48:09 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
 
 	Dog&	operator=(Dog& d1);
 	virtual void	makeSound(void) const;
+	virtual void	think(void) const;
 };
 
 #endif

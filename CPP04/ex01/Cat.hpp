@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:18:37 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 16:28:39 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:14:23 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ public:
 
 	Cat&	operator=(Cat& d1);
 	virtual void	makeSound(void) const;
+	virtual void	think(void) const;
 };
 
 #endif

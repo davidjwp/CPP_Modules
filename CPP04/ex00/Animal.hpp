@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:12:45 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 12:40:22 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 15:24:50 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 
 	Animal(void);
 	Animal(Animal& cpy);
-	~Animal(void);
+	virtual ~Animal(void);
 
 	Animal&	operator=(Animal& a1);
 

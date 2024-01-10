@@ -6,10 +6,11 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:19:47 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 12:45:19 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:42:56 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Brain.hpp"
 #include "Animal.hpp"
 #include <iostream>
 #include <string>
@@ -33,10 +34,12 @@ Animal&	Animal::operator=(Animal& a1){
 	return *this;
 }
 
-void	Animal::makeSound(void) const{//BAD
+void	Animal::makeSound(void) const{
 	std::cout << "i am animal" << std::endl;
 }
 
 std::string	Animal::getType(void) const{
 	return this->type;
 }
+
+void	Animal::think(void) const{}

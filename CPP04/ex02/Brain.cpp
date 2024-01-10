@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:24:47 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/07 15:40:53 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:47:18 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,16 @@ Brain&	Brain::operator=(Brain& b1){
 static char*	myItoa(int n, char buf[4]){
 	int		i = 0;
 
+	if (!n)
+		return ((char *)"0");
 	while (n){
-		buf[i] = n % 10;
+		buf[i] = n % 10 + 48;
 		n /= 10;
 		i++;
 	}
 	return (buf);
+}
+
+std::string	Brain::getIdea(const int i) const{
+	return this->ideas[i];
 }
