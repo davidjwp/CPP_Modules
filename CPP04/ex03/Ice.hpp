@@ -1,18 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 18:27:58 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 21:22:14 by djacobs          ###   ########.fr       */
+/*   Created: 2024/01/10 20:32:19 by djacobs           #+#    #+#             */
+/*   Updated: 2024/01/10 21:21:27 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
-#include "Cure.hpp"
+#ifndef ICE_HPP
+# define ICE_HPP
 
-int	main(void){
-	return 0;
-}
+#include "AMateria.hpp"
+#include <string>
+
+class Ice: public AMateria{
+
+private:
+
+	std::string	_type;
+
+public:
+
+	Ice(void);
+	Ice(Ice& cpy);
+	Ice(std::string const & type);
+	~Ice(void);
+
+	std::string const & getType(void) const;
+	
+	Ice*	clone(void) const; 
+
+	Ice& operator=(Ice& I1);
+
+};
+
+#endif
