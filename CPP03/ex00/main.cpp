@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:14:57 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/05 19:36:02 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 14:47:46 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(void){
 	george.takeDamage(john.getAd());
 	george.attack(john.getName());
 	john.takeDamage(george.getAd());
+	john.attack("other ClapTrap");
+	john.beRepaired(12);
 	
 	return 0;
 }
