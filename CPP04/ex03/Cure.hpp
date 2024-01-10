@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:37:35 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 21:16:20 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/10 22:47:57 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ public:
 	std::string const & getType(void) const;
 	
 	Cure*	clone(void) const; 
+	virtual void use(ICharacter& target);
 
-	Cure& operator=(Cure& I1);
+	virtual Cure& operator=(Cure& I1);
 };
 
 #endif
