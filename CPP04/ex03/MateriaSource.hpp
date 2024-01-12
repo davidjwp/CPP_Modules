@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 13:06:51 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 13:44:30 by djacobs          ###   ########.fr       */
+/*   Created: 2024/01/12 13:37:42 by djacobs           #+#    #+#             */
+/*   Updated: 2024/01/12 13:42:45 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-# define AMATERIA_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-# include "MateriaSource.hpp"
+# include "IMateriaSource.hpp"
 # include <string>
 
-class AMateria: public MateriaSource{
+class MateriaSource: public IMateriaSource {
 
 public:
-	AMateria(void);
-	AMateria(AMateria& cpy);
-	virtual ~AMateria(void);
-	virtual void learnMateria(AMateria*) = 0;
-	virtual  AMateria* createMateria(std::string const & type) = 0;
+	MateriaSource();
+	MateriaSource(MateriaSource&);
+	~MateriaSource();
 
-	AMateria&	operator=(AMateria& M1);
+	virtual void	learnMateria(AMateria*);
+	virtual AMateria* createMateria(std::string const & type);
+
+	MateriaSource& operator=(MateriaSource&);
 };
 
 #endif

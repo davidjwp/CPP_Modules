@@ -6,10 +6,12 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:27:58 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 23:02:43 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 13:43:30 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MateriaSource.hpp"
+#include "IMateriaSource.hpp"
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"

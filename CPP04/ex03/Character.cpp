@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:18:46 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 23:11:21 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 13:21:28 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ std::string const &Character::getName(void) const{
 
 void	Character::equip(AMateria* m){
 	for (int i = 0; i < 4; i++)
+		
 		
 }
 
