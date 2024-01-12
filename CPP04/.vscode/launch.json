@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/mnt/nfs/homes/djacobs/intra_djacobs/5_GitClone/CPP_Modules/CPP04/ex00",
-      "program": "/mnt/nfs/homes/djacobs/intra_djacobs/5_GitClone/CPP_Modules/CPP04/ex00/build/Debug/outDebug",
+      "cwd": "/mnt/nfs/homes/djacobs/intra_djacobs/5_GitClone/CPP_Modules/CPP04/ex03",
+      "program": "/mnt/nfs/homes/djacobs/intra_djacobs/5_GitClone/CPP_Modules/CPP04/ex03/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

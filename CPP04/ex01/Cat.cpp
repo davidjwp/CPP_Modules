@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:26:38 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 19:21:52 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:13:22 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,15 @@ Cat::Cat(void){
 
 Cat::Cat(Cat& cpy){
 	std::cout << "Cat copy constructor called" << std::endl;
+	catBrain = new Brain;
 	*this = cpy;
+}
+
+Cat::Cat(const char* idea){
+	std::string	i = std::string(idea);
+	std::cout << "Cat idea constructor called" << std::endl;
+	this->type = std::string("Cat");
+	catBrain = new Brain(i);
 }
 
 Cat::~Cat(void){

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:25:52 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 20:47:54 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:27:26 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ Dog::Dog(Dog& cpy){
 Dog::~Dog(void){
 	std::cout << "Dog destructor called" << std::endl;
 	delete dogBrain;
+}
+
+Dog::Dog(const char *idea){
+	std::string	i = std::string(idea);
+	std::cout << "Dog idea constructor called" << std::endl;
+	this->type = std::string("Dog");
+	dogBrain = new Brain(i);
 }
 
 Dog&	Dog::operator=(Dog& a1){

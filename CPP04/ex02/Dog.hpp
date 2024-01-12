@@ -6,14 +6,14 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:15:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 19:48:09 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:28:10 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	DOG_HPP
 # define DOG_HPP
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
 class	Dog: public AAnimal{
@@ -25,6 +25,7 @@ public:
 
 	Dog(void);
 	Dog(Dog& cpy);
+	Dog(const char*);
 	~Dog(void);
 
 	Dog&	operator=(Dog& d1);

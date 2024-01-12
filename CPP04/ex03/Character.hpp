@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 21:45:51 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 16:00:26 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:37:15 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class Character: public ICharacter{
 
 private:
-	AMateria *_items[4];//might be wrong 
+	AMateria *_items[4];
 	std::string _name;
 
 public:

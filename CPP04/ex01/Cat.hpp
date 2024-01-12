@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:18:37 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 19:14:23 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:12:11 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ public:
 
 	Cat(void);
 	Cat(Cat& cpy);
+	Cat(const char*);
 	virtual ~Cat(void);
 
 	Cat&	operator=(Cat& d1);

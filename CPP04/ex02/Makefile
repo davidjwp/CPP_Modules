@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/01/07 17:52:34 by djacobs          ###   ########.fr        #
+#    Updated: 2024/01/12 20:56:57 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wall -Werror -Wextra
 
-HEADER	= Animal.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Cat.hpp Brain.hpp
+HEADER	= AAnimal.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Cat.hpp Brain.hpp
 
-SRCS	= Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp main.cpp
+SRCS	= AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

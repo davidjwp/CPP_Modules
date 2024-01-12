@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:24:47 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 20:43:00 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:05:17 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ Brain::Brain(void){
 Brain::Brain(Brain& cpy){
 	std::cout << "copy Brain constructor called" << std::endl;
 	*this = cpy;
+}
+
+Brain::Brain(std::string& idea){
+	std::cout << "idea Brain constructor called" << std::endl;
+	for (int i = 0; i < 100; i++)
+		ideas[i] = idea;
 }
 
 Brain::~Brain(void){
@@ -54,4 +60,9 @@ static char*	myItoa(int n, char buf[4]){
 
 std::string	Brain::getIdea(const int i) const{
 	return ideas[i];
+}
+
+void	Brain::setIdeas(std::string& idea){
+	for (int i = 0; i < 100; i++)
+		ideas[i] = idea;
 }

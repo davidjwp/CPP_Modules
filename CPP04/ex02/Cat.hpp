@@ -6,14 +6,14 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:18:37 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 19:47:56 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 21:27:56 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	CAT_HPP
 # define CAT_HPP
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
 class	Cat: public AAnimal{
@@ -25,6 +25,7 @@ public:
 
 	Cat(void);
 	Cat(Cat& cpy);
+	Cat(const char*);
 	virtual ~Cat(void);
 
 	Cat&	operator=(Cat& d1);
