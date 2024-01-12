@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:37:35 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 22:47:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:20:51 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ private:
 	std::string _type;
 
 public:
-
 	Cure(void);
 	Cure(Cure& cpy);
 	Cure(std::string const & type);
 	~Cure(void);
 
 	std::string const & getType(void) const;
-	
 	Cure*	clone(void) const; 
 	virtual void use(ICharacter& target);
 
@@ -39,22 +37,3 @@ public:
 };
 
 #endif
-
-//class AMateria{
-
-//protected:
-//	std::string _type;
-
-//public:
-//	AMateria(void);
-//	AMateria(AMateria& cpy);
-//	AMateria(std::string const & type);
-//	~AMateria(void);
-
-//	std::string const & getType() const;
-	
-//	virtual AMateria* clone() const = 0;
-//	virtual void use(ICharacter& target);
-	
-//	AMateria&	operator=(AMateria& M1);
-//};

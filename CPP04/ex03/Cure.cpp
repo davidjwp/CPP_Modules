@@ -6,17 +6,18 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:38:06 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 13:16:48 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 19:33:21 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ICharacter.hpp"
 #include "Cure.hpp"
 #include <string>
 #include <iostream>
 
 Cure::Cure(void): _type(std::string("cure")){}
 
-Cure::Cure(Cure& cpy){
+Cure::Cure(Cure& cpy): AMateria(cpy){
 	*this = cpy;
 }
 
@@ -27,6 +28,8 @@ Cure&	Cure::operator=(Cure& M1){
 	return *this;
 }
 
+Cure::~Cure(void){}
+
 const std::string&	Cure::getType(void) const{
 	return _type;
 }
@@ -35,6 +38,6 @@ Cure*	Cure::clone(void) const{
 	return new Cure;
 }
 
-void use(ICharacter& target){
+void Cure::use(ICharacter& target){
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;	
 }

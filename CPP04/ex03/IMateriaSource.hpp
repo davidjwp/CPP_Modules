@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:04:12 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 13:29:07 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 16:27:43 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define IMATERIASOURCE_HPP
 
 # include "AMateria.hpp"
-#include <string>
+# include <string>
 
 class IMateriaSource{
 

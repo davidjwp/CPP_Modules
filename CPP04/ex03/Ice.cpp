@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 21:20:32 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 22:48:46 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 19:33:03 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 Ice::Ice(void): _type(std::string("ice")){}
 
-Ice::Ice(Ice& cpy){
+Ice::Ice(Ice& cpy): AMateria(cpy){
 	*this = cpy;
 }
 
@@ -29,6 +29,8 @@ Ice&	Ice::operator=(Ice& M1){
 	return *this;
 }
 
+Ice::~Ice(void){}
+
 const std::string&	Ice::getType(void) const{
 	return _type;
 }
@@ -37,6 +39,6 @@ Ice*	Ice::clone(void) const{
 	return new Ice;
 }
 
-void use(ICharacter& target){
+void Ice::use(ICharacter& target){
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;	
 }

@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/01/07 18:27:46 by djacobs          ###   ########.fr        #
+#    Updated: 2024/01/12 16:45:59 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wall -Werror -Wextra
 
-HEADER	= 
+HEADER	= AMateria.hpp Character.hpp Cure.hpp Ice.hpp \
+		  ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
 
-SRCS	= main.cpp
+SRCS	= Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp main.cpp \
+		  AMateria.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

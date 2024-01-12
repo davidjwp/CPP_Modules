@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:32:19 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 22:48:02 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:20:58 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ private:
 	std::string	_type;
 
 public:
-
 	Ice(void);
 	Ice(Ice& cpy);
 	Ice(std::string const & type);
 	~Ice(void);
 
 	std::string const & getType(void) const;
-	
 	Ice*	clone(void) const; 
 	virtual void use(ICharacter& target);
 

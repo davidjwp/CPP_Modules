@@ -6,24 +6,31 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:06:51 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 13:44:30 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 17:21:13 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
 
-# include "MateriaSource.hpp"
 # include <string>
 
-class AMateria: public MateriaSource{
+class ICharacter;
+
+class AMateria{
+
+protected:
+	std::string	_type;
 
 public:
 	AMateria(void);
 	AMateria(AMateria& cpy);
+	AMateria(std::string const & type);
 	virtual ~AMateria(void);
-	virtual void learnMateria(AMateria*) = 0;
-	virtual  AMateria* createMateria(std::string const & type) = 0;
+
+	virtual std::string const & getType() const;
+	virtual AMateria* clone() const = 0;
+	virtual void	use(ICharacter& target);
 
 	AMateria&	operator=(AMateria& M1);
 };
