@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 21:20:32 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 19:33:03 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:09:05 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,27 @@
 #include <string>
 #include <iostream>
 
-Ice::Ice(void): _type(std::string("ice")){}
+Ice::Ice(void): _type(std::string("ice")){
+	//std::cout << "Ice default constructor called" << std::endl;
+}
 
 Ice::Ice(Ice& cpy): AMateria(cpy){
+	//std::cout << "Ice copy constructor called" << std::endl;
 	*this = cpy;
 }
 
-Ice::Ice(std::string const& type): _type(type){}
+Ice::Ice(std::string const& type): _type(type){
+	//std::cout << "Ice type constructor called" << std::endl;
+}
 
 Ice&	Ice::operator=(Ice& M1){
 	this->_type = M1.getType();
 	return *this;
 }
 
-Ice::~Ice(void){}
+Ice::~Ice(void){
+	//std::cout << "Ice destructor called" << std::endl;
+}
 
 const std::string&	Ice::getType(void) const{
 	return _type;

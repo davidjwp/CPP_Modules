@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 22:18:46 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 19:42:41 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:06:18 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,25 @@
 #include <string>
 
 Character::Character(void): _name(std::string("Default character")){
+	//std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }
 
 Character::Character(Character& cpy){
+	//std::cout << "Character copy constructor called" << std::endl;
 	*this = cpy;
 }
 
 Character::~Character(void){
+	//std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		if (_items[i] != NULL)
 			delete _items[i];
 }
 
 Character::Character(const char* name): _name(std::string(name)){
+	//std::cout << "Character name constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:10:53 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 19:11:16 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:49:46 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,11 @@ int	main(void){
 	std::cout << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete t[i];
+	std::cout << std::endl;
+	//Dog	basic;
+	//{
+	//	Dog tmp = basic;
+	//}
+	//basic.think();
 	return 0;
 }

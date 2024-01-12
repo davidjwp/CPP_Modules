@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:52:37 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 19:56:11 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:09:16 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@
 #include <iostream>
 
 MateriaSource::MateriaSource(void): IMateriaSource(){
+	//std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		_materias[i] = NULL;
 }
 
 MateriaSource::MateriaSource(MateriaSource& cpy){
+	//std::cout << "MateriaSource copy constructor called" << std::endl;
 	*this = cpy;
 }
 
 MateriaSource::~MateriaSource(void){
+	//std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete _materias[i];
 }

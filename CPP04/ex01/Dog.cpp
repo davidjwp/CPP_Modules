@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 21:25:52 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/10 20:09:35 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:47:54 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ Dog::Dog(void){
 
 Dog::Dog(Dog& cpy){
 	std::cout << "Dog copy constructor called" << std::endl;
+	dogBrain = new Brain;
 	*this = cpy;
 }
 

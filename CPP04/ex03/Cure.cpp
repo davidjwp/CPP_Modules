@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 20:38:06 by djacobs           #+#    #+#             */
-/*   Updated: 2024/01/12 19:33:21 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:05:49 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 #include <string>
 #include <iostream>
 
-Cure::Cure(void): _type(std::string("cure")){}
+Cure::Cure(void): _type(std::string("cure")){
+	//std::cout << "Cure default constructor called" << std::endl;
+}
 
 Cure::Cure(Cure& cpy): AMateria(cpy){
+	//std::cout << "Cure copy constructor called" << std::endl;
 	*this = cpy;
 }
 
-Cure::Cure(std::string const& type): _type(type){}
+Cure::Cure(std::string const& type): _type(type){
+	//std::cout << "Cure type constructor called" << std::endl;
+}
 
 Cure&	Cure::operator=(Cure& M1){
 	this->_type = M1.getType();
 	return *this;
 }
 
-Cure::~Cure(void){}
+Cure::~Cure(void){
+	//std::cout << "Cure destructor called" << std::endl;
+}
 
 const std::string&	Cure::getType(void) const{
 	return _type;
