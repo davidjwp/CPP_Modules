@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:25:13 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/10 21:12:38 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/10 21:45:54 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ public:
 	static void decreaseGrade(Bureaucrat& B);
 
 	bool	threwException(void);
+
+	void	signForm();
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat& instance);

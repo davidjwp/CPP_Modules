@@ -6,10 +6,11 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:24:56 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/10 21:22:38 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/10 21:46:36 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include <exception>
@@ -56,4 +57,8 @@ bool Bureaucrat::threwException(void){ if (grade < 1 || grade > 150) return true
 std::ostream& operator<<(std::ostream& o, Bureaucrat& B){
 	o << B.getName() << ", bureaucrat grade " << B.getGrade() << ".";
 	return o;
+}
+
+void	Bureaucrat::signForm(void){
+	
 }
