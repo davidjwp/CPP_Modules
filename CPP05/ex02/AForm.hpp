@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:28:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/11 18:39:11 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/11 21:20:33 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <exception>
 # include <iostream>
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	
 private:
@@ -30,10 +30,10 @@ private:
 
 public:
 
-	Form();
-	Form(Form& F);
-	Form(const char *N, const int GTS, const int GTE);
-	~Form();
+	AForm();
+	AForm(AForm& F);
+	AForm(const char *N, const int GTS, const int GTE);
+	virtual ~AForm();
 
 	class GradeTooHighException: public std::exception{
 	public:
@@ -59,20 +59,22 @@ public:
 	public:
 		const char* what() const throw(){return "Error GradeToExecute too high";}
 	};
-	Form& operator=(Form& F);
+	AForm& operator=(AForm& F);
 
-	char *getName();
-	bool	getSigned();
-	int	getGTS();
-	int	getGTE();
+	virtual char *getName() = 0;
+	virtual bool	getSigned();
+	virtual int	getGTS();
+	virtual int	getGTE();
 
-	void	beSigned(Bureaucrat& B);
-	void	signForm();
+	virtual void	beSigned(Bureaucrat& B);
+	virtual void	signForm();
 
 	static int evalGTS(const int grade);
 	static int evalGTE(const int grade);
+	void setAttributes(const char *N, bool Signed);
+
 };
 
-std::ostream& operator<<(std::ostream& o, Form& F);
+std::ostream& operator<<(std::ostream& o, AForm& F);
 
 #endif
