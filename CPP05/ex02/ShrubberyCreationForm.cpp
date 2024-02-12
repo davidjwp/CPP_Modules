@@ -6,13 +6,13 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:18:16 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/11 22:32:46 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:28:22 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("default form", 145, 137){}
+ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("default Shrubbery form", 145, 137){}
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& SCF): AForm(SCF){
 	*this = SCF;
