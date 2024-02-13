@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:28:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/11 21:20:33 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:41:16 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,19 @@ public:
 	};
 	AForm& operator=(AForm& F);
 
-	virtual char *getName() = 0;
-	virtual bool	getSigned();
-	virtual int	getGTS();
-	virtual int	getGTE();
+	virtual char *getName();
+	bool	getSigned();
+	int	getGTS() const;
+	int	getGTE() const;
 
-	virtual void	beSigned(Bureaucrat& B);
-	virtual void	signForm();
+	void	beSigned(Bureaucrat& B);
+	void	signForm();
 
 	static int evalGTS(const int grade);
 	static int evalGTE(const int grade);
 	void setAttributes(const char *N, bool Signed);
-
+	void execute(Bureaucrat const & executor) const;
+	virtual void action(std::string target) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& o, AForm& F);

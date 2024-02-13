@@ -6,14 +6,16 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:22:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/11 19:15:15 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:39:59 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 #include <exception>
+#include <string>
+
 
 int	main(void)
 {
@@ -51,6 +53,8 @@ int	main(void)
 	} catch (std::exception & e) {
 		std::cerr << "Exception: " << e.what() << '\n'  << std::endl;
 	}
-	
+
+
+
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:28:06 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/11 21:04:58 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:30:14 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ char * AForm::getName(void){ return (char*)name;}
 
 bool	AForm::getSigned(void){ return Signed;}
 
-int AForm::getGTS(void){ return GradeToSign;}
+int AForm::getGTS(void) const{ return GradeToSign;}
 
-int AForm::getGTE(void){ return GradeToExecute;}
+int AForm::getGTE(void) const{ return GradeToExecute;}
 
 void	AForm::beSigned(Bureaucrat& B){
-	if (!Signed && B.getGrade() <= getGTS())
+	if (!Signed && Bureaucrat::getGrade(B) <= getGTS())
 		Signed = true;
-	else if ( B.getGrade() > getGTS())
+	else if (Bureaucrat::getGrade(B) > getGTS())
 		throw AForm::GTSTooHigh();
 }
 
@@ -60,4 +60,13 @@ void	AForm::setAttributes(const char *N, bool S){
 	else
 		name = "(null)";
 	Signed = S;
+}
+
+void	AForm::execute(Bureaucrat const &B) const{
+	if (Bureaucrat::getGrade(B) <= getGTS()){
+		if (Bureaucrat::getGrade(B) <= getGTE())
+			action(B.target);
+		else throw AForm::GTETooLow();
+	}
+	else throw AForm::GTSTooLow();
 }

@@ -6,19 +6,26 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/02/11 18:16:54 by djacobs          ###   ########.fr        #
+#    Updated: 2024/02/13 18:13:44 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Form
+NAME	= AForm
 
 CC		= c++
 
 CFLAGS	= -g3 -std=c++98 -Wall -Werror -Wextra
 
-HEADER	= Form.hpp Bureaucrat.hpp
+HEADER	= 	AForm.hpp Bureaucrat.hpp \
+			PresidentialPardonForm.hpp \
+			RobotomyRequestForm.hpp \
+			ShrubberyCreationForm.hpp \
 
-SRCS	= Form.cpp Bureaucrat.cpp main.cpp
+SRCS	= 	AForm.cpp Bureaucrat.cpp \
+			PresidentialPardonForm.cpp \
+			RobotomyRequestForm.cpp \
+			ShrubberyCreationForm.cpp \
+			main.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 

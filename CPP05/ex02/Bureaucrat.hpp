@@ -6,14 +6,14 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:25:13 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/11 18:34:43 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:16:55 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 # include <exception>
 # include <iostream>
 
@@ -23,6 +23,7 @@ class Bureaucrat
 public:
 	const char* name;
 	int	grade;
+	std::string target;
 
 	Bureaucrat(void);
 	Bureaucrat(int g);
@@ -33,7 +34,7 @@ public:
 	Bureaucrat& operator=(Bureaucrat& B1);
 
 	const char* getName(void);
-	int	getGrade(void);
+	static int	getGrade(Bureaucrat const& B);
 
 	class GradeTooHighException: public std::exception {
 	public:
@@ -49,7 +50,8 @@ public:
 
 	bool	threwException(void);
 
-	void	signForm(Form& F);
+	void	signForm(AForm& F);
+	void	executeForm(AForm const&);
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat& instance);
