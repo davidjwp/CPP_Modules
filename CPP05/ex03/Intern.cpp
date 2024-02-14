@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 20:55:18 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 23:11:28 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:34:01 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ AForm* Intern::makeForm(const char* FormName, const char* TargetForm){
 	std::string Name(FormName);
 
 	int	i = 0;
-	while (i < 3)
-		Name.compare(fStrings[i]) ? i++ : throw Intern::FormDoesNotExist();
+	while (i < 3 && Name.compare(fStrings[i]))
+		i++;
+	i == 3 ? throw Intern::FormDoesNotExist() : "it's a form";
 
 	std::cout << "Intern creates " << FormName << std::endl;
 	return forms[i]->clone(TargetForm);
