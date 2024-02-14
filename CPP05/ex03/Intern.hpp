@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/11 19:03:13 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 18:21:21 by djacobs          ###   ########.fr       */
+/*   Created: 2024/02/14 20:53:01 by djacobs           #+#    #+#             */
+/*   Updated: 2024/02/14 22:50:07 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
 # include "AForm.hpp"
-# include <string>
-# include <fstream>
+# include <exception>
 
-class ShrubberyCreationForm: public AForm{
+
+class Intern
+{
 public:
+	AForm *forms[3];
 
-	ShrubberyCreationForm();
-	ShrubberyCreationForm(const char*);
-	ShrubberyCreationForm(ShrubberyCreationForm& SCF);
-	virtual ~ShrubberyCreationForm();
+	Intern();
+	Intern(Intern&);
+	~Intern();
+	
+	class FormDoesNotExist: public std::exception {
+	public:
+		const char* what() const throw(){ return "This form does not exist";}
+	};
 
-	virtual void	action(std::string) const;
-
-	ShrubberyCreationForm& operator=(ShrubberyCreationForm& SCF);
+	AForm* makeForm(const char* NameForm, const char* TargetForm);
+	Intern& operator=(Intern&);
 };
 
 #endif

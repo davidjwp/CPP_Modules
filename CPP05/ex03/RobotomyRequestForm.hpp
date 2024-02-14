@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 15:36:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 18:20:02 by djacobs          ###   ########.fr       */
+/*   Created: 2024/02/12 16:25:12 by djacobs           #+#    #+#             */
+/*   Updated: 2024/02/14 23:08:38 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
-#include <string>
 #include "AForm.hpp"
 
-
-class PresidentialPardonForm: public AForm{
+class RobotomyRequestForm: public AForm
+{
 private:
 	std::string	target;
 
 public:
 
-	PresidentialPardonForm();
-	PresidentialPardonForm(const char*);
-	PresidentialPardonForm(PresidentialPardonForm&);
-	virtual ~PresidentialPardonForm();
-
-	PresidentialPardonForm& operator=(PresidentialPardonForm&);
+	RobotomyRequestForm();
+	RobotomyRequestForm(const char*);
+	RobotomyRequestForm(RobotomyRequestForm&);
+	virtual ~RobotomyRequestForm();
 
 	virtual void action(std::string) const;
+
+	RobotomyRequestForm& operator=(RobotomyRequestForm&);
+	AForm* clone(const char*);
 };
+
 
 #endif

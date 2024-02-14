@@ -6,11 +6,12 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:38:32 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 18:19:40 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:08:20 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 
@@ -28,3 +29,5 @@ void PresidentialPardonForm::action(std::string Target)const{
 	std::cout << Target << " has been pardoned by " << 
 	"\033[103,93m" << "Zaphod Beeblebrox" << "\033[0m" << std::endl;
 }
+
+AForm* PresidentialPardonForm::clone(const char* target){return new PresidentialPardonForm(target);}

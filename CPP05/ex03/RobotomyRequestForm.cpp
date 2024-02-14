@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:24:49 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 20:17:25 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:08:12 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,5 @@ void	RobotomyRequestForm::action(std::string Target)const{
 	if (rand() > (RAND_MAX / 2)) {std::cout << "*** Dzzzzzzzzz... *** " << Target << " has been robotomized successfully" << std::endl;}
 	else {std::cout << "*** Dzzzzzzzzz... *** " << Target << "'s robotomy has failed" << std::endl;}
 }
+
+AForm* RobotomyRequestForm::clone(const char* target){return new RobotomyRequestForm(target);}

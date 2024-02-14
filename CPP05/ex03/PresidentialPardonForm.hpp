@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:36:28 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 18:20:02 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:06:24 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ public:
 	PresidentialPardonForm& operator=(PresidentialPardonForm&);
 
 	virtual void action(std::string) const;
+	AForm* clone(const char*);
 };
 
 #endif

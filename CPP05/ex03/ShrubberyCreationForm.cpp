@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:18:16 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 20:06:54 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:09:42 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,5 @@ void ShrubberyCreationForm::action(std::string Target) const{
   "     o  | |oo  oo\t\t\n" <<
   "    ooo/  |oooooooo\t\t\n";
 }
+
+AForm* ShrubberyCreationForm::clone(const char *target){return new ShrubberyCreationForm(target);}

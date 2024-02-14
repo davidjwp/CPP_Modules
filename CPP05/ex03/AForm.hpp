@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 21:28:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 20:40:56 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 23:12:34 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ public:
 	void	beSigned(Bureaucrat& B);
 	void	signForm();
 
+	virtual AForm* clone(const char*) = 0;
 	static int evalGTS(const int grade);
 	static int evalGTE(const int grade);
 	void setAttributes(const char *N, bool Signed);

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:25:12 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/13 18:39:11 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/14 18:20:40 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 
 class RobotomyRequestForm: public AForm
 {
+private:
+	std::string	target;
+
 public:
 
 	RobotomyRequestForm();
+	RobotomyRequestForm(const char*);
 	RobotomyRequestForm(RobotomyRequestForm&);
-	RobotomyRequestForm(const char *N);
-	~RobotomyRequestForm();
+	virtual ~RobotomyRequestForm();
 
-	void action(std::string) const;
+	virtual void action(std::string) const;
 
 	RobotomyRequestForm& operator=(RobotomyRequestForm&);
 };
