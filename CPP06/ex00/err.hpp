@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:20:38 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/16 19:25:58 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/16 20:10:36 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ private:
 public:
 	class char_BadInput: std::exception{
 		const char* what()const throw(){ return "bad char definition";}
+	};
+
+	class UnknownInput: std::exception{
+		const char* what()const throw(){ return "unknown input";}
 	};
 };
 

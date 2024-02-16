@@ -6,10 +6,11 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 17:48:53 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/16 20:05:12 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/16 20:19:31 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cmath>
 #include "err.hpp"
 #include "ScalarConverter.hpp"
 #include <string>
@@ -42,19 +43,25 @@ void ScalarConverter::convert(const std::string& literal){
 	}
 
 	if (literal[0] >= 48 && literal[0] <= 57){
-				
+			
 	}
-	
+
+	if (!literal.compare("nan")) {float_cast = static_cast<float>(NAN); cast = 5;}
+	if (!literal.compare("-inf")) {float_cast = static_cast<float>(-INFINITY); cast = 5;}
+	if (!literal.compare("+inf")) {float_cast = static_cast<float>(INFINITY); cast = 5;}
+
 	switch (cast)
 	{
 		case 1:
-		
+			
 		case 2:
 
 		case 3:
 
 		case 4:
-
-		case 0:
+			
+		case 5:
+	
+		case 0:	throw err::UnknownInput();
 	}
 }
