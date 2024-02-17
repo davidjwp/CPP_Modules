@@ -35,7 +35,7 @@ void ScalarConverter::convert(const std::string& literal){
 	long	long_cast;
 
 	if (literal[0] == '\''){
-		if (int	len = literal.length() != 3 && literal[len] != '\'')
+		if (int	len = literal.length() != 3 && literal[len-1] != '\'')
 			throw err::char_BadInput();
 		else
 			char_cast = static_cast<char>(literal[1]);
@@ -43,12 +43,18 @@ void ScalarConverter::convert(const std::string& literal){
 	}
 
 	if (literal[0] >= 48 && literal[0] <= 57){
-			
+		int len = literal.length();
+		if (literal[len-1] == 'f')
+			float_cast = static_cast<float>
 	}
 
-	if (!literal.compare("nan")) {float_cast = static_cast<float>(NAN); cast = 5;}
-	if (!literal.compare("-inf")) {float_cast = static_cast<float>(-INFINITY); cast = 5;}
-	if (!literal.compare("+inf")) {float_cast = static_cast<float>(INFINITY); cast = 5;}
+	if (!literal.compare("nan")) {float_cast = static_cast<double>(NAN); cast = 5;}
+	else if (!literal.compare("-inf")) {float_cast = static_cast<double>(-INFINITY); cast = 5;}
+	else if (!literal.compare("+inf")) {float_cast = static_cast<double>(INFINITY); cast = 5;}
+	else if (!literal.compare("nanf")) {float_cast = static_cast<float>(NAN); cast = 5;}
+	else if (!literal.compare("-inff")) {float_cast = static_cast<float>(-INFINITY); cast = 5;}
+	else if (!literal.compare("+inff")) {float_cast = static_cast<float>(INFINITY); cast = 5;}
+
 
 	switch (cast)
 	{
