@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 17:48:53 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/17 18:08:47 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/17 19:02:36 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void ScalarConverter::convert(const std::string& literal){
 	char	char_cast;
 	int		int_cast;
 	float	float_cast;
-	long	long_cast;
+	double	double_cast;
 
 	if (literal[0] == '\''){
 		int	len = literal.length();
@@ -39,9 +39,9 @@ void ScalarConverter::convert(const std::string& literal){
 			throw err::char_BadInput();
 		else {
 			char_cast = static_cast<char>(str[1]);
-			int_cast = static_cast<>
-			std::cout << "char: " << "\'" << static_cast<char>(str[1]) << "\'" << std::endl;
-			st
+			int_cast = static_cast<int>(str[1]);
+			std::cout << "char: " << "\'" << char_cast << "\'" << std::endl;
+			std::cout << "int: " << int_cast << std::endl;
 		}
 		cast = 1;
 	}
@@ -50,19 +50,21 @@ void ScalarConverter::convert(const std::string& literal){
 		int len = literal.length();
 		if (str[len - 1] == 'f'){
 			float_cast = static_cast<float>(std::atof(str));
-			long_cast = static_cast<double>(float_cast);
+			double_cast = static_cast<double>(float_cast);
 			cast = 2;
 		}
 		else{
-			long_cast = static_cast<long>(std::atof(str));
-			float_cast = static_cast<long>(long_cast);
+			double_cast = static_cast<double>(std::atof(str));
+			float_cast = static_cast<float>(double_cast);
 			cast = 2;
 		}
 		int_cast = static_cast<int>(std::atoi(str));
 		if (int_cast < 0 || int_cast > 127)
 			std::cout << "char: " << "impossible" << std::endl;
-		else if (int_cast < 32 || int_cast == 127)
+		else if (int_cast < 32 || int_cast == 127){
 			std::cout << "char: " << "Non displayable" << std::endl;
+			std::cout << "int: " << int_cast << std::endl;
+		}
 	}
 	
 	for (int i = 0; i < 6; i++)
@@ -75,14 +77,14 @@ void ScalarConverter::convert(const std::string& literal){
 	}
 			
 
-	if (!literal.compare("nan")) {float_cast = static_cast<double>(NAN); cast = 5;}
-	else if (!literal.compare("-inf")) {float_cast = static_cast<double>(-INFINITY); cast = 5;}
-	else if (!literal.compare("+inf")) {float_cast = static_cast<double>(INFINITY); cast = 5;}
-	else if (!literal.compare("nanf")) {float_cast = static_cast<float>(NAN); cast = 5;}
-	else if (!literal.compare("-inff")) {float_cast = static_cast<float>(-INFINITY); cast = 5;}
-	else if (!literal.compare("+inff")) {float_cast = static_cast<float>(INFINITY); cast = 5;}
+	//if (!literal.compare("nan")) {float_cast = static_cast<double>(NAN); cast = 5;}
+	//else if (!literal.compare("-inf")) {float_cast = static_cast<double>(-INFINITY); cast = 5;}
+	//else if (!literal.compare("+inf")) {float_cast = static_cast<double>(INFINITY); cast = 5;}
+	//else if (!literal.compare("nanf")) {float_cast = static_cast<float>(NAN); cast = 5;}
+	//else if (!literal.compare("-inff")) {float_cast = static_cast<float>(-INFINITY); cast = 5;}
+	//else if (!literal.compare("+inff")) {float_cast = static_cast<float>(INFINITY); cast = 5;}
 
-	(void)int_cast;
+	//(void)int_cast;
 	switch (cast)
 	{
 		case 1:{
@@ -90,7 +92,8 @@ void ScalarConverter::convert(const std::string& literal){
 		}
 			
 		case 2:{
-			
+			std::cout << "float: " << float_cast << std::endl;
+			std::cout << "double: " << double_cast << std::endl;
 		}
 		case 3:{}
 
