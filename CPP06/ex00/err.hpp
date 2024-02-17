@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:20:38 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/16 20:10:36 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/02/17 17:06:42 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ private:
 
 	virtual err& operator=(err&) = 0;
 public:
-	class char_BadInput: std::exception{
+	class char_BadInput: public std::exception{
 		const char* what()const throw(){ return "bad char definition";}
 	};
 
-	class UnknownInput: std::exception{
+	class UnknownInput: public std::exception{
 		const char* what()const throw(){ return "unknown input";}
 	};
 };
