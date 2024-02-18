@@ -6,19 +6,19 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/02/18 15:29:13 by djacobs          ###   ########.fr        #
+#    Updated: 2024/02/18 19:50:12 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= convert
+NAME	= Serialize
 
 CC		= g++
 
 CFLAGS	= -g -std=c++98 -Wall -Werror -Wextra 
 
-HEADER	= ScalarConverter.hpp err.hpp
+HEADER	= Serializer.hpp 
 
-SRCS	= main.cpp ScalarConverter.cpp 
+SRCS	= main.cpp Serializer.cpp 
 
 OBJS	= $(SRCS:.cpp=.o)
 
