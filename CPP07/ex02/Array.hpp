@@ -3,29 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:35:04 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/02/21 01:42:11 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:21:57 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+#include <exception>
 
-template <typename T> class Array{
+template <typename T> 
+class Array{
 private:
-	T* ptr;
+	Array();
+	T* 				_ptr;
+	unsigned int	_size;
 
 public:
-	Array();
 	Array(unsigned int);
-	Array(Array&);
+	Array(const Array<T>&);
+	Array(unsigned int, int);
 	~Array();
-
-	Array& operator=(Array&);
-	size_t size();
+	Array<T>& operator=(Array<T>&);
+	class IndexOutOfArray: public std::exception{
+		const char* what()const throw(){return "Index is out of bounds";}
+	};
+	T& operator[](unsigned int);
+	unsigned int size() const;
+	T getElement(unsigned int);
 };
+
+#include "Array.tpp"
 
 #endif

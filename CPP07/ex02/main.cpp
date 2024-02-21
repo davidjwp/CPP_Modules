@@ -3,17 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:47 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/02/21 01:43:36 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:39:32 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 #include <exception>
+#include <iostream>
+#include <string>
+
+#define ARRAY "what's up doc"
 
 int	main(void)
 {
-	int * a = new int();
+	try{
+		Array<int> P(5, 3);
+		Array<char> P2(std::string(ARRAY).length());
+
+		for (unsigned int i = 0; i < P.size(); i++)
+			std::cout << P.getElement(i);
+		std::cout << std::endl;
+
+		for (unsigned int i = 0; i < P2.size(); i++)
+			P2[i] = ARRAY[i];
+		
+		for (unsigned int i = 0; i < P2.size(); i++)
+			std::cout << P2.getElement(i);
+		std::cout << std::endl;
+	}
+	catch (std::exception& E){
+		std::cout << E.what() << std::endl;
+	}
+	return 0;
 }

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+         #
+#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/02/21 01:44:46 by davidjwp         ###   ########.fr        #
+#    Updated: 2024/02/21 18:02:46 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= templates
+NAME	= Array
 
 CC		= g++
 
@@ -18,7 +18,7 @@ CFLAGS	= -g -std=c++98 -Wall -Werror -Wextra
 
 HEADER	= Array.hpp 
 
-SRCS	= Array.tpp main.cpp 
+SRCS	= main.cpp 
 
 OBJS	= $(SRCS:.cpp=.o)
 
