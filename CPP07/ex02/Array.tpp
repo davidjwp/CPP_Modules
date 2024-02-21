@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   templates.hpp                                      :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 23:58:04 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/19 00:45:27 by djacobs          ###   ########.fr       */
+/*   Created: 2024/02/21 01:36:51 by davidjwp          #+#    #+#             */
+/*   Updated: 2024/02/21 01:56:17 by davidjwp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATES_HPP
-# define TEMPLATES_HPP
+#include "Array.hpp"
 
-#include <stddef.h>
-
-template <typename T, typename Func> void iter(T& arr, size_t len, Func func){
-	for (size_t i = 0; i < len; ++i)
-		func(arr[i]);
-}
-
-#endif
+template <typename T>void Array::Array(void){ptr = new [] T;}

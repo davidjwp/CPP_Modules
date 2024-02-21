@@ -5,26 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 23:17:40 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/20 18:31:52 by davidjwp         ###   ########.fr       */
+/*   Created: 2024/02/20 13:15:41 by davidjwp          #+#    #+#             */
+/*   Updated: 2024/02/20 14:27:39 by davidjwp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
+#include "iter.hpp"
 #include <iostream>
 
-int main( void ) {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+#define LEN 5
+
+void increase(int& val){val+=5;}
+
+void change(char& c){c += 5;}
+
+void print(int& val){std::cout << val << " ";}
+
+int	main(void)
+{
+	int		arr1[LEN] = {0, 1 , 2, 3, 4};
+	char	arr2[LEN+1] = "01234";
+
+	iter(arr1, LEN, increase);
+	iter(arr1, LEN, print);
+	std::cout << std::endl;
+	iter(arr2, LEN, change);
+	std::cout << arr2 << std::endl;
 	return 0;
 }

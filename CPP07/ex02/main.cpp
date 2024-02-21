@@ -5,26 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 23:17:40 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/20 18:31:52 by davidjwp         ###   ########.fr       */
+/*   Created: 2024/02/20 23:06:47 by davidjwp          #+#    #+#             */
+/*   Updated: 2024/02/21 01:43:36 by davidjwp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
-#include <iostream>
+#include "Array.hpp"
+#include <exception>
 
-int main( void ) {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-	return 0;
+int	main(void)
+{
+	int * a = new int();
 }

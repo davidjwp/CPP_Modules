@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
+#    By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/02/18 23:50:47 by djacobs          ###   ########.fr        #
+#    Updated: 2024/02/20 18:32:01 by davidjwp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		= g++
 
 CFLAGS	= -g -std=c++98 -Wall -Werror -Wextra 
 
-HEADER	= templates.hpp 
+HEADER	= whatever.hpp 
 
 SRCS	= main.cpp 
 
