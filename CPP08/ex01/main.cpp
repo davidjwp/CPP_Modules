@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 21:09:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/24 23:20:21 by djacobs          ###   ########.fr       */
+/*   Created: 2024/02/24 23:11:08 by djacobs           #+#    #+#             */
+/*   Updated: 2024/02/24 23:12:59 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#include "Span.hpp"
+#include <iostream>
 
-template <typename T, typename N>
-class Span{
-private:
-	T [] content;
-	unsigned int N;	
-public:
+int	main()
+{
+	Span sp = Span(5);
 
-	Span();
-	Span(unsigned int);
-	~Span();
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
 
-	Span& operator=(Span&);
-	addNumber();
-	shortestSpan();
-	longestSpan();
-};
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
 
-
-
-#endif
+	return 0;
+}
