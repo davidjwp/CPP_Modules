@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.tpp                                       :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:33:52 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/24 21:05:38 by djacobs          ###   ########.fr       */
+/*   Created: 2024/02/24 21:12:17 by djacobs           #+#    #+#             */
+/*   Updated: 2024/02/24 21:15:30 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
-#include <exception>
+#include "Span.hpp"
 
-template <typename T>
-typename T::iterator easyfind(T& cont, int num){
-	typename T::iterator it = cont.begin();
+template <typename T, typename N>
+Span::Span(void){content = new [N] T;}
 
-	while (it != cont.end() && *it != num)
-		it++;
-	if (it != cont.end())
-		return it;
-	else throw NotFound();
-}
+Span::Span()
