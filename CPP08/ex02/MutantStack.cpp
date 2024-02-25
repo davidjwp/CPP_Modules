@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MutantStack.hpp                                    :+:      :+:    :+:   */
+/*   MutantStack.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 20:55:50 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/25 21:53:05 by djacobs          ###   ########.fr       */
+/*   Created: 2024/02/25 21:08:03 by djacobs           #+#    #+#             */
+/*   Updated: 2024/02/25 21:55:50 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MUTANTSTACK_HPP
-# define MUTANTSTACK_HPP
-
+#include "MutantStack.hpp"
 #include <stack>
 
 template <typename T>
-class MutantStack: public std::stack<T>{
+MutantStack<T>::MutantStack(): std::stack<T>(){}
 
-public:
-	MutantStack();
-	MutantStack(MutantStack&);
-	~MutantStack();
+template <typename T>
+MutantStack<T>::MutantStack(MutantStack<T>& cpy): Stack(cpy){}
 
-	MutantStack& operator=(MutantStack&);
-	
-	std::stack<T> getStack();
-};
-
-#endif
+template <typename T>
