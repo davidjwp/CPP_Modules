@@ -5,37 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/02/26 20:56:51 by davidjwp         ###   ########.fr        #
+#    Created: 2024/03/05 07:05:56 by davidjwp          #+#    #+#              #
+#    Updated: 2024/03/08 05:01:17 by davidjwp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Mutant
+NAME	= btc
 
-CC		= g++
+CC		= c++
 
-CFLAGS	= -g -std=c++98 -Wall -Werror -Wextra 
+CFLAGS	= -Wextra -Werror -Wall -std=c++98
 
-HEADER	= MutantStack.hpp 
-
-SRCS	= MutantStack.cpp main.cpp 
-
-OBJS	= $(SRCS:.cpp=.o)
-
-all:$(NAME)
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-%.o: %.cpp $(HEADER)
-	$(CC) -c $(CFLAGS) $< -o $@
-	
-clean:
-	rm -f $(OBJS)
-
-fclean: clean
-	rm $(NAME)
-
-re: fclean all
-
-.PHONY: re clean fclean
