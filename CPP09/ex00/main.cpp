@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 08:26:48 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/03/08 05:11:02 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/03/12 23:43:49 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Convert.hpp"
+#include "EC.hpp"
 
 #include <string>
 #include <iostream>
@@ -17,37 +20,18 @@
 #include <vector>
 #include <stdlib.h>
 
-class EC{
-private:
-	EC();
-	~EC();
-	EC(EC& cpy);
-
-	virtual EC& operator=(EC&) = 0;
-public:
-	class FileNotGiven: public std::exception{
-	public:
-		const char* what() const throw(){ return "no file given";}
-	};
-	class CannotOpenFile: public std::exception{
-	public:
-		const char* what() const throw(){ return "could not open file";}
-	};
-};
-
 int	main(int ac, char **av){
 	try {
-		if (ac < 2) EC::FileNotGiven();
+		if (ac < 2) throw EC::FileNotGiven();
 		
-		
-		std::ofstream input_file;
-		std::ofstream CSV;
-		
-		CSV.open("data.csv");
+		std::ifstream		input_file;
+	
 		input_file.open(av[1]);
-		if (!input_file.is_open()) EC::CannotOpenFile();
-		if (input_file.)
-		
+		if (!input_file.is_open()) throw EC::CannotOpenFile();
+
+		Convert	conv(input_file);
+
+		input_file.close();
 	}
 	catch (std::exception& E){ std::cout << "Error: " << E.what() << std::endl; return 1;}
 	return 0;

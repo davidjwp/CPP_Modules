@@ -3,16 +3,39 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+         #
+#    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 07:05:56 by davidjwp          #+#    #+#              #
-#    Updated: 2024/03/08 05:01:17 by davidjwp         ###   ########.fr        #
+#    Updated: 2024/03/13 00:26:38 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= btc
 
-CC		= c++
+CC		= g++
 
-CFLAGS	= -Wextra -Werror -Wall -std=c++98
+CFLAGS	= -g -std=c++98 -Wextra -Werror -Wall 
 
+HEADERS	= EC.hpp Convert.hpp
+
+SRCS	= main.cpp Convert.cpp
+
+OBJS	= $(SRCS:.cpp=.o)
+
+all:$(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp $(HEADER)
+	$(CC) -c $(CFLAGS) $< -o $@
+	
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm $(NAME)
+
+re: fclean all
+
+.PHONY: re clean fclean
