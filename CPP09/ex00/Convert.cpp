@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:23:50 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/13 01:07:40 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/13 02:46:16 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,37 @@ Convert::Convert(std::ifstream& input_file){
 	std::string line;
 	std::string file_val;
 	std::string file_date;
-	float		val;
+	float	val;
+	lint	dat;
+
+	//get first line
 	std::getline(input_file, line);
 	while (input_file){
 		std::getline(input_file, line);
+	/*
 		if (line[0]) {
-			file_date = std::string(line.substr(0, line.find_first_of('|')));
-			date_iterator p = std::find(date.begin(), date.end(), eval_date(file_date, "input_file"));
-			file_val = std::string(line.substr(line.find_first_of('|') + 1, line.length()));
-			val = atof(file_val.c_str());
-			if (!*p) p = min_element(date.begin(), date.end(), Smallest(val));
+			file_date = std::string(line.substr(0, line.find_first_of('|')));//input file date in string
+			dat = eval_date(file_date, "input_file");//evaluate the date and encode it
+			date_iterator p = std::find(date.begin(), date.end(), dat);//search for the date in the csv date vector
+			file_val = std::string(line.substr(line.find_first_of('|') + 1, line.length()));//input file val in string
+			val = atof(file_val.c_str());//file val int 
+
+			if (!*p) p = std::min_element(date.begin(), date.end(), Smallest(dat));
 			if (file_val.find_first_of("0123456789", 0) == std::string::npos) std::cout << "Error: no value" << std::endl;
 			else if ((val < 0) || (val >= 1000.0)) std::cout << "Error: bad values" << std::endl;
+			else std::cout << file_date << " => " << val << " = " << cal_values(p, val) << std::endl;
+		}*/
+		if (line[0]) {
+			date_iterator p;
+			file_date = std::string(line.substr(0, line.find_first_of('|')));
+			dat = eval_date(file_date, "input_file");
+			if (!*(p = std::find(date.begin(), date.end(), dat))) 
+				p = std::min_element(date.begin(), date.end(), Smallest(dat));
+			if ((file_val = std::string(line.substr(line.find_first_of('|') + 1, line.length()))).find_first_of("0123456789", 0) == std::string::npos) 
+				std::cout << "Error: no value" << std::endl;
+			val = atof(file_val.c_str());//
+
+			if ((val < 0) || (val >= 1000.0)) std::cout << "Error: bad values" << std::endl;
 			else std::cout << file_date << " => " << val << " = " << cal_values(p, val) << std::endl;
 		}
 	}
@@ -67,11 +86,11 @@ lint	Convert::eval_date(std::string string_date, std::string File){
 		month > 12 || month < 0 ||
 		day > 31 || day < 0){
 		if (!File.compare("CSV")) throw EC::FilebadDay(File);
-		else {std::cout << "Error: bad input => " << year<<'-'<<month<<'-' << std::endl; return 0;}}
+		else {std::cout << "Error: bad input => " << year<<'-'<<month<<'-'<<day << std::endl; return 0;}}
 
 	if ((month == 2 && day > 29) || ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30))
 		{if (!File.compare("CSV")) throw EC::FilebadDay(File);
-		 else {std::cout << "Error: bad date => " << year<<'-'<<month<<'-' << std::endl; return 0;}}
+		 else {std::cout << "Error: bad date => " << year<<'-'<<month<<'-'<<day << std::endl; return 0;}}
 
 	if (!File.compare("CSV"))
 		date.push_back(Convert::encode(year, month, day));
