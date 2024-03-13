@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 08:26:48 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/03/12 23:43:49 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/13 18:15:07 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	main(int ac, char **av){
 
 		input_file.close();
 	}
-	catch (std::exception& E){ std::cout << "Error: " << E.what() << std::endl; return 1;}
+	catch (std::exception& E){ std::cerr << "Error: " << E.what() << std::endl; return 1;}
 	return 0;
 }
