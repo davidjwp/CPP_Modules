@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:53:00 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/13 22:20:12 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/14 03:58:12 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 #define OP "/-+*"
 #define SFAIL std::string::npos
 #define FIND(str, chars) (str.find_first_of(chars))
+#define FINDL(str, chars) (str.find_last_of(chars))
 
 typedef short unsigned int suint;
 
 class RPN{
 private:
-	std::stack<suint>	values;
-	std::stack<char>	operations;
+	std::stack<suint>	_values;
+	//std::stack<char>	_operations;
 
 	RPN();
 	RPN(RPN&);
@@ -52,10 +53,6 @@ private:
 	public:
 		const char* what() const throw() { return "Error: Negative value";}
 	}; 
-	class WrongInput: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Wrong input";}
-	};
 	class EmptyString: public std::exception{
 	public:
 		const char* what() const throw() { return "Error: Empty string";}
@@ -72,17 +69,13 @@ private:
 	public:
 		const char* what() const throw() { return "Error: Missing space";}
 	};
-	class NumberAfterOperation: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Number after operation";}	
-	};
 
 public:
 	RPN(std::string);
 	~RPN();
 	
 	void calculate();
-	static const bool is_op(char c);
+	static bool is_op(char c);
 };
 
 #endif

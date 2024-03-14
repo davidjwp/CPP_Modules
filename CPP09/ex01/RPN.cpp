@@ -6,13 +6,14 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:58:09 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/13 23:43:18 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/14 04:00:57 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 RPN::RPN(){}
 
@@ -20,19 +21,11 @@ RPN::RPN(std::string op){
 	op_num(op);
 }
 
-void RPN::calculate(void){
-	if (values.size() <= operations.size()) throw MalformedExpression();
-
-	while (!operations.empty()){
-		
-	}
-}
-
 RPN::RPN(RPN& cpy){(void)cpy;}
 
-RPN& RPN::operator=(RPN& R){(void)R;}
+RPN& RPN::operator=(RPN& R){(void)R; return *this;}
 
-const bool RPN::is_op(char c){return c == 47 || c == 45 || c == 43 || c == 42 ? true : false;}
+bool RPN::is_op(char c){return c == 47 || c == 45 || c == 43 || c == 42 ? true : false;}
 
 //parsing through the input, throws an exception if and error is found
 void RPN::op_num(std::string op){
@@ -44,40 +37,41 @@ void RPN::op_num(std::string op){
 
 	//finds any non number or operation character
 	for (std::string::iterator i = op.begin(); i != op.end(); i++)
-		if(!(*i >= 48 && *i <= 57 || (*i == 47 || *i == 45 || *i == 43 || *i == 42 || *i == 32))) throw WrongInput();
-
-	//if the first operation is the first character and the next one is a num or an operation then throw an exception 
-	if ((FIND(op, OP) == 0) && (FIND(op, "0123456789/+-*") == 1)) throw MissingSpace();
+		if(!((*i >= 48 && *i <= 57) || (*i == 47 || *i == 45 || *i == 43 || *i == 42 || *i == 32))) throw WrongInput();
 
 	//find any operation touching a number, loop and 'cut' the string until no more operations are found 
-	for (std::string str(op.substr(FIND(op, OP) - 1, op.size() - FIND(op, OP) - 1)); FIND(str, OP) != SFAIL; str = str.substr(FIND(str, OP) - 1, str.size() - FIND(str, OP) - 1))
-		if (FIND(str, NUM) == 0 || FIND(str, NUM) == 2) throw MissingSpace();
+	//for (std::string str(op.substr(FIND(op, OP) - 1, op.size() - (FIND(op, OP) - 1))); FIND(str, OP) != SFAIL || !str.empty() ; str = str.substr(FIND(str, OP) + 1, str.size() - (FIND(str, OP) - 1)))
+	//	if (FIND(str, NUM) == 0 || FIND(str, NUM) == 2) throw MissingSpace();
+	
+	//operators can be after a value but one thing is certain the operation MUST have at least two numbers at the beginning 
+	//it MUST also not have the same amount of operators, the number of operators is always one less than the total number of numbers
+	//the orde of the operators matters alot so you should push things on the stack in the order you see them in the operation
+	//the two first elements must be numbers
+	//READ THE RPN!!!
 
-	//if the number is a number is after an operation 
-	if (op.find_last_of("0123456789") > FIND(op, OP)) throw NumberAfterOperation();
+	//this loop will find the operators, cut them from the string and put them in the stack
+	//then the string is cut from the last found num/op, this is done again for the numbers
+	while (FIND(op, "0123456789/*-+") != SFAIL){		
+		int len = op.size() - FINDL(op, "0123456789/*-+");
+		//substring of the last thing
+		std::string str = op.substr(FINDL(op, "0123456789/*-+"), len);
 
-	int			val;
-	while (op.size() != std::string::npos){
-		std::string::iterator i = op.begin();
-		op = op.substr(i - op.begin(), op.size() - (i - op.begin()));//cuts op by the i'th progress.
-
-		std::string str(op, (i - op.begin()), FIND(op, OP) - 1);
-		if (FIND(std, NUM) != SFAIL){
-			val = atoi(str.c_str());
-			if (val > 10) throw ValueTooHigh();
-			if (val < 0) throw NegativeValue();
-			else values.push(static_cast<suint>(val));
+		//if there is an operation then push the operation to the stack, else same with values
+		if (FINDL(op ,OP) != SFAIL) _operations.push(str.c_str()[FIND(str, OP)]);
+		else if (FINDL(op, NUM) != SFAIL){
+			int value = atoi(str.c_str());
+			if (value > 10) throw ValueTooHigh();
+			_values.push(value);
 		}
-		else if ()
 		
+		op.resize(op.size() - len);
 	}
 }
 
 /*
-all errors not handled 
+all errors  
 
 " 1 2 3 + *"
 
-"1+"things are separated by spaces
 */
 RPN::~RPN(){}
