@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:58:09 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/15 03:25:42 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/15 03:43:26 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,17 @@ bool RPN::is_operation(char c) const{return c == 47 || c == 45 || c == 43 || c =
 char RPN::find_op() const{ for(std::stack<size_t> cpy(_table); !cpy.empty(); cpy.pop()) if (cpy.top() > 10) return cpy.top(); return 0;}
 
 size_t RPN::operation(size_t A, const char c, size_t B) const{if (c == 47) return A / B; if (c == 45) return A - B; if (c == 43) return A + B; if (c == 42) return A * B; return -1;}
-
+#include<deque>
 //int index = 0;
 size_t RPN::bottom(std::stack<size_t> stack_result) const{ 
 	size_t	stack_bottom;
-
-	while (stack_result.size() != 1) 
+	size_t size = stack_result.size();
+	while (size--) 
 	{
 		//std::cout << "index: " << index++ << std::endl;
 		stack_bottom = stack_result.top();
 		stack_result.pop();
+		size--;
 	} 
 	return stack_bottom;}
 
@@ -67,8 +68,12 @@ void RPN::calculate(){
 		else {stack_result.push(_table.top()); _table.pop();}
 	}
 
-	while (stack_result.size()) {std::cout << bottom(stack_result) << ' '; 
-	stack_result.pop();}
+	size_t size = stack_result.size();
+	while (size--) 
+	{
+		std::cout << bottom(stack_result) << ' '; 
+	stack_result.pop();
+	}
 	std::cout << std::endl;
 }
 //1 1  -2 / 2 1 1 1  - - - 3 3 + -
