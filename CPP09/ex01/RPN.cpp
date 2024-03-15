@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:58:09 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/14 04:00:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/15 03:25:42 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,72 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <iterator>
+#include <stack>
+#include <algorithm>
 
 RPN::RPN(){}
 
-RPN::RPN(std::string op){
-	op_num(op);
-}
+RPN::RPN(std::string op){parsing(op);}
 
 RPN::RPN(RPN& cpy){(void)cpy;}
 
 RPN& RPN::operator=(RPN& R){(void)R; return *this;}
 
-bool RPN::is_op(char c){return c == 47 || c == 45 || c == 43 || c == 42 ? true : false;}
+
+size_t RPN::num_len(std::string::iterator i) const { 
+	std::string::iterator len = i; 
+	while (*len == 32) std::advance(len, 1);
+	while ((*len >= 48 && *len <= 57)) std::advance(len, 1);
+	return len - i;
+}
+
+bool RPN::is_operation(char c) const{return c == 47 || c == 45 || c == 43 || c == 42 ? true : false;}
+
+char RPN::find_op() const{ for(std::stack<size_t> cpy(_table); !cpy.empty(); cpy.pop()) if (cpy.top() > 10) return cpy.top(); return 0;}
+
+size_t RPN::operation(size_t A, const char c, size_t B) const{if (c == 47) return A / B; if (c == 45) return A - B; if (c == 43) return A + B; if (c == 42) return A * B; return -1;}
+
+//int index = 0;
+size_t RPN::bottom(std::stack<size_t> stack_result) const{ 
+	size_t	stack_bottom;
+
+	while (stack_result.size() != 1) 
+	{
+		//std::cout << "index: " << index++ << std::endl;
+		stack_bottom = stack_result.top();
+		stack_result.pop();
+	} 
+	return stack_bottom;}
+
+void RPN::calculate(){
+	std::stack<size_t> stack_result;
+
+	while (find_op()){
+
+		if (_table.size() == 1 && _table.top() < 10) throw WrongInput();//check last one
+
+		if (stack_result.size() > 2 && is_operation(_table.top())) {
+			char op = _table.top(); _table.pop();
+			size_t operand = stack_result.top(); stack_result.pop();
+			size_t result = operation(operand, op, stack_result.top()); stack_result.pop();
+			stack_result.push(result);}
+		else {stack_result.push(_table.top()); _table.pop();}
+	}
+
+	while (stack_result.size()) {std::cout << bottom(stack_result) << ' '; 
+	stack_result.pop();}
+	std::cout << std::endl;
+}
+//1 1  -2 / 2 1 1 1  - - - 3 3 + -
 
 //parsing through the input, throws an exception if and error is found
-void RPN::op_num(std::string op){
+void RPN::parsing(std::string op){
+	
+	std::string str(op);
 
 	//first checks to make sure that the string is not empty and isn't missing anything
-	if (!op.size() || FIND(op, "0123456789/+-*") == SFAIL) throw EmptyString();
+	if (!op.size() || FIND(op, NUMOP) == SFAIL) throw EmptyString();
 	if (FIND(op, OP) == SFAIL) throw MissingOperations();
 	if (FIND(op, NUM) == SFAIL) throw MissingOperands();
 
@@ -39,39 +87,41 @@ void RPN::op_num(std::string op){
 	for (std::string::iterator i = op.begin(); i != op.end(); i++)
 		if(!((*i >= 48 && *i <= 57) || (*i == 47 || *i == 45 || *i == 43 || *i == 42 || *i == 32))) throw WrongInput();
 
-	//find any operation touching a number, loop and 'cut' the string until no more operations are found 
-	//for (std::string str(op.substr(FIND(op, OP) - 1, op.size() - (FIND(op, OP) - 1))); FIND(str, OP) != SFAIL || !str.empty() ; str = str.substr(FIND(str, OP) + 1, str.size() - (FIND(str, OP) - 1)))
-	//	if (FIND(str, NUM) == 0 || FIND(str, NUM) == 2) throw MissingSpace();
-	
-	//operators can be after a value but one thing is certain the operation MUST have at least two numbers at the beginning 
-	//it MUST also not have the same amount of operators, the number of operators is always one less than the total number of numbers
-	//the orde of the operators matters alot so you should push things on the stack in the order you see them in the operation
-	//the two first elements must be numbers
-	//READ THE RPN!!!
+	//create the operation stack in an unordered way meaning that the first element is the last element in the operation
+	//for (std::string::iterator i = str.begin(); i != str.end(); i += str.find_first_of(NUMOP, IT_INDEX(str, i))){
+	//	while (*i == 32) i++;
+	//	if (_table.size() <= 2 && is_operation(*i)) throw WrongInput();
+	//	if (is_operation(*i)) {_table.push(static_cast<size_t>(*i)); i++;}
+	//	else {size_t val = ATOI_STR(str, i);
+	//		if (val > 10) throw ValueTooHigh();
+	//	i += num_len(i);}
+	//}
 
-	//this loop will find the operators, cut them from the string and put them in the stack
-	//then the string is cut from the last found num/op, this is done again for the numbers
-	while (FIND(op, "0123456789/*-+") != SFAIL){		
-		int len = op.size() - FINDL(op, "0123456789/*-+");
-		//substring of the last thing
-		std::string str = op.substr(FINDL(op, "0123456789/*-+"), len);
-
-		//if there is an operation then push the operation to the stack, else same with values
-		if (FINDL(op ,OP) != SFAIL) _operations.push(str.c_str()[FIND(str, OP)]);
-		else if (FINDL(op, NUM) != SFAIL){
-			int value = atoi(str.c_str());
-			if (value > 10) throw ValueTooHigh();
-			_values.push(value);
-		}
-		
-		op.resize(op.size() - len);
+	//put operation in the stack _table by starting at the end and progressively erasing the string, if a value is too high throws an exception
+	//this stack creator is ordered meaning the top element is the first element in the operation 
+	for (std::string::iterator i = str.end() - 1; FIND(str, NUMOP) != SFAIL; i = str.end() - 1){
+		while (*i == 32) i--;
+		if (is_operation(*i)) { _table.push(static_cast<size_t>(*i));    i--;}
+		else { while (i != str.begin() && *i >= 48 && *i <= 57) i--;
+			size_t val = ATOI_STR(str, i);    val > 10 ? throw ValueTooHigh() : _table.push(val);}
+		i == str.begin() ? str.erase(IT_INDEX(str, i)) : str.erase(IT_INDEX(str, i) + 1);
 	}
+
+//this checks that the ratio of operators to operands is good
+{
+	if (_table.size() < 3) throw WrongInput();
+	size_t	ops = 0;
+	size_t	val = 0;
+	size_t	i = 0;
+	for (std::stack<size_t> cpy(_table); !cpy.empty(); cpy.pop()){
+		if (i < 3 && ops) throw WrongInput();
+		if (cpy.top() > 10) ops++;
+		else val++;
+		i++;
+	}
+	if (ops >= val) throw WrongInput();
+}
 }
 
-/*
-all errors  
 
-" 1 2 3 + *"
-
-*/
 RPN::~RPN(){}
