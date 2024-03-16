@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:53:00 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/15 02:33:15 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/16 04:04:42 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 
 class RPN{
 private:
-	std::stack<size_t>	_table;
-	//std::stack<char>	_operation;
+	std::stack<float>	_table;
 
 	RPN();
 	RPN(RPN&);
@@ -37,11 +36,12 @@ private:
 	RPN& operator=(RPN&);
 	void parsing(std::string);
 
-	size_t bottom(std::stack<size_t>) const;
-	size_t operation(size_t, char, size_t) const;
+	float bottom(std::stack<float>) const;
+	float operand(std::stack<float>) const;
+	float operation(float, char, float) const;
 	char find_op() const;
 	bool is_operation(char) const;
-	size_t num_len(std::string::iterator) const;
+	float num_len(std::string::iterator) const;
 
 //	Exceptions //============================================================//
 	class WrongInput: public std::exception{

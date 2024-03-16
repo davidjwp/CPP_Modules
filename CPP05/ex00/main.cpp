@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:22:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/07 16:19:23 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:06:00 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(void)
 		std::cerr << "Exception: " << e.what() << '\n'  << std::endl;
 	}
 	try {
-		Bureaucrat dude("spaghetti", 151);
+		Bureaucrat dude("spaghetti", 1);
 		std::cout << dude << '\n' << std::endl;
 		Bureaucrat::increaseGrade(dude);
 		std::cout << dude << '\n' << std::endl;
