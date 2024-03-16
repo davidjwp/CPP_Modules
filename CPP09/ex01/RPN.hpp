@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:53:00 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/16 04:04:42 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/16 19:03:21 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 #define NUM "0123456789"
 #define OP "/-+*"
 #define SFAIL std::string::npos
-#define IT_INDEX(str, i) (std::distance(str.begin(), i))
+#define IT_INDEX(str, i) (static_cast<long unsigned int>(std::distance(str.begin(), i)))
 #define FIND(str, chars) (str.find_first_of(chars))
 #define FINDL(str, chars) (str.find_last_of(chars))
-#define ATOI_STR(str, i) (atoi(str.substr(i - str.begin(), num_len(i)).c_str()))
+#define ATOI_STR(str, i) (atof(str.substr(i - str.begin(), num_len(i)).c_str()))
 
 class RPN{
 private:

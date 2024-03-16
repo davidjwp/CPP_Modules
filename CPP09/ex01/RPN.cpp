@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:58:09 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/16 04:31:16 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/16 18:58:48 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ RPN& RPN::operator=(RPN& R){(void)R; return *this;}
 
 
 float RPN::num_len(std::string::iterator i) const { 
-	if (is_operation(*i)) i++;
 	std::string::iterator len = i; 
-	while (*len == 32) std::advance(len, 1);
-	while ((*len >= 48 && *len <= 57)) std::advance(len, 1);
-	float siz = len - i;
-	(void)siz;
+	if (is_operation(*len)) len++;
+	while (*len == 32) std::advance(len, 1);//this might not do anything ever 
+	while ((*len >= 48 && *len <= 57) || *len == 46) {std::advance(len, 1);}
 	return len - i;
 }
 
@@ -81,26 +79,42 @@ void RPN::calculate(){
 
 //parsing through the input, throws an exception if and error is found
 void RPN::parsing(std::string op){
-	
+
 	std::string str(op);
 
 	//first checks to make sure that the string is not empty and isn't missing anything
 	if (!op.size() || FIND(op, NUMOP) == SFAIL) throw EmptyString();
-	if (FIND(op, OP) == SFAIL || (op[FIND(op, OP) + 1] >= 48 && op[FIND(op, OP) + 1] <= 57)) throw MissingOperations();//this is causing a problem, don't count negatives as operation
+	if (FIND(op, OP) == SFAIL) throw MissingOperations();
 	if (FIND(op, NUM) == SFAIL) throw MissingOperands();
 
-	//finds any non number or operation character
+	//finds any non number character or non operation character
 	for (std::string::iterator i = op.begin(); i != op.end(); i++)
-		if(!((*i >= 48 && *i <= 57) || (*i == 47 || *i == 45 || *i == 43 || *i == 42 || *i == 32))) throw WrongInput();
+		if(!((*i >= 48 && *i <= 57) || ((*i >= 45 && *i <= 47) || *i == 43 || *i == 42 || *i == 32))) throw WrongInput();
+
+	//check that there is at least one operator while making sure they are not conflated with negative numbers 
+	{
+	bool ops = false;
+	for (long unsigned int i = op.find_first_of(OP, 0); i != SFAIL; i = op.find_first_of(OP, i + 1))
+		if (i != SFAIL && (i + 1 == IT_INDEX(op, op.end()) || !(op[i + 1] >= 48 && op[i + 1] <= 57)))  {ops = true; break ;}
+	if (!ops) throw MissingOperations();
+	}
+	
+	//check the integrity of float numbers 
+	{
+		for (long unsigned int i = FIND(op, '.'); i != SFAIL; i = op.find_first_of('.', i + 1)){
+			if (!i || i + 1 == IT_INDEX(op, op.end())) throw WrongInput();
+			if (i != SFAIL && (!(op[i - 1] >= 48 && op[i - 1] <= 57) || !(op[i + 1] >= 48 && op[i + 1] <= 57))) throw WrongInput();
+		}
+	}	
 
 	//put operation in the stack _table by starting at the end and progressively erasing the string, if a value is too high throws an exception
 	//this stack creator is ordered meaning the top element is the first element in the operation 
 	for (std::string::iterator i = str.end() - 1; FIND(str, NUMOP) != SFAIL; i = str.end() - 1){
 		while (*i == 32) i--;
 		if (is_operation(*i)) { _table.push(static_cast<float>(*i));    i--;}
-		else { while ((i != str.begin() && *i >= 48 && *i <= 57 )|| (*i == 45 && i != str.begin())) i--;
-			if (is_operation(*i)) {float val = ATOI_STR(str, i + 1);    val > 10 ? throw ValueTooHigh() : _table.push(val);}
-			else {float val = ATOI_STR(str, i);    val > 10 ? throw ValueTooHigh() : _table.push(val);}}
+		else { while ((i != str.begin() && *i >= 48 && *i <= 57) || *i == 46) i--;
+			float val = ATOI_STR(str, i);    val > 10 ? throw ValueTooHigh() : _table.push(val);
+			if (is_operation(*i)) i--;}
 		i == str.begin() ? str.erase(IT_INDEX(str, i)) : str.erase(IT_INDEX(str, i) + 1);
 	}
 
@@ -119,5 +133,3 @@ void RPN::parsing(std::string op){
 }
 
 RPN::~RPN(){}
-
-//handle negative numbers 
