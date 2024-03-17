@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:23:50 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/13 18:14:59 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/17 02:08:53 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <iterator>
+#include <list>
 
 Convert::Convert(){}
 
@@ -36,7 +38,7 @@ Convert::Convert(std::ifstream& input_file){
 	std::string file_date;
 	float	val;
 	lint	dat;
-	date_iterator p;//the iterator for the date vector corresponding to the input file date or the closest from it.
+	std::list<lint>::iterator p;//the iterator for the date vector corresponding to the input file date or the closest from it.
 
 	std::getline(input_file, line);
 	while (input_file && !input_file.eof()){
@@ -60,10 +62,16 @@ Convert::Convert(std::ifstream& input_file){
 			else std::cout << file_date << " => " << val << " = " << cal_values(p, val) << std::endl;
 		}
 	}
+	std::distance(date.begin(), date.end());
 }
 
 //using the date vector iterator to find the corresponding position in the value vector the result of the input file value times the csv value is calculated.
-float Convert::cal_values(date_iterator& p, float val) const{ unsigned int index = p - date.begin(); return val * value[index];}
+float Convert::cal_values(std::list<lint>::iterator p, float val) { 
+	size_t dis = std::distance(date.begin(), p);
+	std::list<float>::iterator i = value.begin();
+	std::advance(i, dis);
+	return val * *i;
+}
 
 Convert::~Convert(){}
 
@@ -109,7 +117,7 @@ void Convert::_Convert(){
 		std::getline(CSV, line);
 		if (line[0]) {
 			eval_date(line.substr(0, line.find_first_of(',')), "CSV");
-			
+
 			line = line.substr(line.find_first_of(',') + 1, line.length());
 			if (!line[0] || line[0] == 32) throw EC::FileBadValue(file);
 			float tval = atof(line.c_str());

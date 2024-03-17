@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:58:09 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/16 18:58:48 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/16 19:26:05 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ RPN::RPN(std::string op){parsing(op);}
 RPN::RPN(RPN& cpy){(void)cpy;}
 
 RPN& RPN::operator=(RPN& R){(void)R; return *this;}
-
 
 float RPN::num_len(std::string::iterator i) const { 
 	std::string::iterator len = i; 
@@ -58,7 +57,6 @@ void RPN::calculate(){
 
 		if (stack_result.size() >= 2 && is_operation(_table.top())) {
 			char op = _table.top(); _table.pop();
-			//float operand = stack_result.top();
 			float result = operation(operand(stack_result), op, stack_result.top()); 
 			stack_result.pop();	stack_result.pop();
 			stack_result.push(result); op = 11;}
@@ -74,8 +72,6 @@ void RPN::calculate(){
 	cpy.pop();}
 	std::cout << std::endl;
 }
-//"1 1  -2 / 2 1 1 1  - - - 3 3 + -"
-//"  1 1 4 -  /"
 
 //parsing through the input, throws an exception if and error is found
 void RPN::parsing(std::string op){
