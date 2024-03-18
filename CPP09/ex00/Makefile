@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 07:05:56 by davidjwp          #+#    #+#              #
-#    Updated: 2024/03/13 00:26:38 by djacobs          ###   ########.fr        #
+#    Updated: 2024/03/17 18:58:24 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC		= g++
 
 CFLAGS	= -g -std=c++98 -Wextra -Werror -Wall 
 
-HEADERS	= EC.hpp Convert.hpp
+HEADERS	= BitcoinExchange.hpp
 
-SRCS	= main.cpp Convert.cpp
+SRCS	= main.cpp BitcoinExchange.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

@@ -6,12 +6,11 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 08:26:48 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/03/13 18:15:07 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/17 19:01:31 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Convert.hpp"
-#include "EC.hpp"
+#include "BitcoinExchange.hpp"
 
 #include <string>
 #include <iostream>
@@ -22,14 +21,14 @@
 
 int	main(int ac, char **av){
 	try {
-		if (ac < 2) throw EC::FileNotGiven();
+		if (ac < 2) throw BitcoinExchange::FileNotGiven();
 		
 		std::ifstream		input_file;
 	
 		input_file.open(av[1]);
-		if (!input_file.is_open()) throw EC::CannotOpenFile();
+		if (!input_file.is_open()) throw BitcoinExchange::CannotOpenFile();
 
-		Convert	conv(input_file);
+		BitcoinExchange	conv(input_file);
 
 		input_file.close();
 	}
