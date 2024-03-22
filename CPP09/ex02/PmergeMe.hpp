@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/18 00:43:10 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/22 19:04:58 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@
 
 typedef std::vector<unsigned int> uint_vector;
 typedef std::deque<unsigned int> uint_deque;
+typedef std::vector<std::pair<unsigned int, unsigned int>> pair_vector;
 
 class PM{
 
 private:
+	uint_vector unsorted;
 	uint_vector _vector;
 	uint_deque _deque;
 
-	time_t	_vector_time;
-	time_t	_deque_time;
+	double	_vector_time;
+	double	_deque_time;
 
 	//default constructors for coplien form
 	PM();
@@ -46,9 +48,17 @@ public:
 
 	void Parsing(char**);
 	void output_time(time_t) const;
+	void print() const;
 
-	void sort_vector();
-	void sort_deque();
+	void start();
+	const unsigned int sum(pair_vector::iterator) const;
+	pair_vector::iterator lowest(pair_vector::iterator, pair_vector::iterator);
+	bool sorted_pairs(pair_vector&) const;
+	void sort_pairs(pair_vector&, pair_vector::iterator) const;
+
+	template <typename T, typename T_it>
+	T sort(T&, T_it);
+	
 	//exceptions
 	class Error: public std::exception{
 		std::string error;
