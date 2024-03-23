@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/22 19:04:58 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/23 19:32:29 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,14 @@ public:
 
 	void start();
 	const unsigned int sum(pair_vector::iterator) const;
+	void swap(unsigned int&, unsigned int&) const;
 	pair_vector::iterator lowest(pair_vector::iterator, pair_vector::iterator);
 	bool sorted_pairs(pair_vector&) const;
 	void sort_pairs(pair_vector&, pair_vector::iterator) const;
+	template <typename T>
+	bool is_sorted(T) const;
+	template <typename T, typename T_it>
+	void binary_search_sort(T&, pair_vector&, T_it) const;
 
 	template <typename T, typename T_it>
 	T sort(T&, T_it);
