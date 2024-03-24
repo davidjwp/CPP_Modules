@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 19:28:19 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/22 13:46:15 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/24 16:23:26 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <exception>
 #include <iostream>
 #include <vector>
-#include <ctime.h>
+#include <ctime>
 
 int	main(int ac, char **av){
 	if (ac < 2) {std::cout << "Error: no arguments given." << std::endl; return 1;}

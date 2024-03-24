@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/23 20:28:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/24 18:41:43 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,27 @@ PM::~PM(){}
 
 PM::PM(PM& cpy){static_cast<void>(cpy);}
 
-PM& PM::operator=(PM& P){static_cast<void>(P);}
+PM& PM::operator=(PM& P){static_cast<void>(P); return P;}
 
 #define T_MIDDLE(T)(T.begin() + static_cast<unsigned int>(T.size() / 2))
 
-const unsigned int PM::sum(pair_vector::iterator it) const{return (*it).first + (*it).second;}
+unsigned int PM::sum(pair_vector::iterator it) const{return (*it).first + (*it).second;}
+
+template <typename container, typename value>
+static const typename container::iterator emplace(container& ty, typename container::iterator ty_it, value val){
+	typename container::iterator end = ty.end();
+	container tmp;
+
+	ty.push_back(0);
+	for (type_iterator it = ty.begin(); it != ty.end(); it++){
+		if (tmp.size()) {*it = *tmp;}
+		if ((ty.begin() - it) == (ty.begin() - ty_it)){
+			for (type_iterator tmp_it = it; it != ty.end(); tmp_it++)
+				tmp.push_back(*tmp_it);
+			*it = val;
+		}
+	}
+}
 
 //highest is a main chain
 //lowest is a pend
@@ -51,10 +67,10 @@ void PM::sort_pairs(pair_vector& pairs, pair_vector::iterator curr) const{
 	return ;
 }
 
-
+//it = list.begin() + 1
 template <typename T>
-bool PM::is_sorted(T list) const{
-	for (T::iterator it = list.begin() + 1, T::iterator old = it - 1; it != list.end(); old = it, it++){
+bool PM::is_sorted(T list, typename T::iterator it) const{
+	for (T_it old = it - 1; it != list.end(); old = it, it++){
 		if (*old > *it) return false;
 		}
 	return true;
@@ -68,52 +84,62 @@ void PM::swap(unsigned int& first, unsigned int& second) const{
 
 #define INDEX(begin, it)(begin - it)
 
-//template <typename T, typename T_it>
-//void PM::BN(T& list, )
+template <typename T>
+T PM::subrange(typename T::iterator start, typename T::iterator end) const{ return T(mid, end);}
 
-template <typename T, typename T_it>
-void PM::binary_search_sort(T& list, pair_vector& pairs, T_it last) const{
+#define TO_INT(range, it)(range.begin() - it)
+
+template <typename T>
+void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator last) const{
 	T pend;
+	T main_chain;
 
-	for (pair_vector::iterator it = pairs.begin(); it != pairs.end(); it++)
+	(void)list;
+	for (pair_vector::iterator it = pairs.begin(); it != pairs.end(); it++){
 		pend.push_back((*it).first);
-	
-	if (last != pairs.end()) pend.push_back(*last);
+		main_chain.push_back((*it).second);
+	}
 
-	//BN(list, );
+	if (last != list.end()) pend.push_back(*last);
 
-	for (T_it mid = pend.begin() + (pend.size() / 2); pend.size();){
-		T range = pend;
-		for (T range = pend; range.size() > 1;){
-			if (INDEX(range.begin(), mid) >= (range.size() / 2)) range = T(mid, range.end());
+	typename T::iterator mid = main_chain.begin() - (main_chain.size() / 2);
+	T range = main_chain;
+	for (typename T::iterator range_it = range.begin(); pend.size(); pend.erase(pend.begin())){
+		while(range.size() > 1){
+			if (TO_INT(range, mid) >= (range.size() / 2)) range = subrange(mid, range.end());
+			else range = subrange(range.begin(), mid);
+			mid = range.begin() + (range.size() / 2);
 		}
-
+		emplace(main_chain, main_chain.begin() + TO_INT(range, mid), *mid);
 	}
 }
 
-template <typename T, typename T_it>
-T PM::sort(T& list, T_it middle){
+template <typename T>
+T PM::sort(T& list, typename T::iterator middle){
 	pair_vector pairs;
 	T probes;
 	
-	T_it last = list.end();
-	if (list.size() % 2) *(list.end() - 1) last--;
+	(void)middle;
+	typename T::iterator last = list.end();
+	if (list.size() % 2) last--;
 
 	//group pair
-	for (T_it it = list.begin(); it + 1 != list.end() - 1; it++)//check for that 
-		pairs.push_back(*it, *(it + 1));
+	for (typename T::iterator it = list.begin(); it + 1 != list.end() - 1;){
+		if ((it + 1) != last) {pairs.push_back(std::make_pair(*it, *(it + 1))); it += 2;}
+		else it++;
+	}
 
 	//sort pairs
 	sort_pairs(pairs, pairs.begin());
 
 	//binary search
-	binary_search_sort(pairs, last);
+	binary_search_sort(list, pairs, last);
 
-	for (pair_vector::iterator it = pairs.begin(); it != pairs.end(); it++){
-		if ((*it).first > (*it).second) probes.push_back((*it).second);
-		else probes.push_back((*it).first);
-	}
-	
+	//for (pair_vector::iterator it = pairs.begin(); it != pairs.end(); it++){
+	//	if ((*it).first > (*it).second) probes.push_back((*it).second);
+	//	else probes.push_back((*it).first);
+	//}
+	return list;
 }
 
 void PM::print() const{
@@ -130,7 +156,7 @@ void PM::start(){
 	unsorted = _vector;
 	sort(_vector, T_MIDDLE(_vector));
 	_vector_time = difftime(start_time, time(NULL));
-	sort(_vector, T_MIDDLE(_deque));
+	sort(_deque, T_MIDDLE(_deque));
 	_deque_time = difftime(start_time, time(NULL));}
 
 void PM::Parsing(char **av){
@@ -144,7 +170,7 @@ void PM::Parsing(char **av){
 	}
 }
 
-void PM::output_time(time_t start_time) const{
+void PM::output_time() const{
 	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector" <<
 	": " << _vector_time << " s" << std::endl;
 

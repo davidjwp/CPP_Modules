@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/23 19:32:29 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/24 18:18:30 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 #include <vector>
 #include <deque>
-#include <ctime.h>
+#include <ctime>
 #include <string>
 
 typedef std::vector<unsigned int> uint_vector;
 typedef std::deque<unsigned int> uint_deque;
-typedef std::vector<std::pair<unsigned int, unsigned int>> pair_vector;
+typedef std::vector<std::pair<unsigned int, unsigned int> > pair_vector;
 
 class PM{
 
@@ -47,22 +47,26 @@ public:
 	~PM();
 
 	void Parsing(char**);
-	void output_time(time_t) const;
+	void output_time() const;
 	void print() const;
 
 	void start();
-	const unsigned int sum(pair_vector::iterator) const;
+	unsigned int sum(pair_vector::iterator) const;
 	void swap(unsigned int&, unsigned int&) const;
 	pair_vector::iterator lowest(pair_vector::iterator, pair_vector::iterator);
 	bool sorted_pairs(pair_vector&) const;
 	void sort_pairs(pair_vector&, pair_vector::iterator) const;
 	template <typename T>
-	bool is_sorted(T) const;
-	template <typename T, typename T_it>
-	void binary_search_sort(T&, pair_vector&, T_it) const;
+	bool is_sorted(T, typename T::iterator) const;
 
-	template <typename T, typename T_it>
-	T sort(T&, T_it);
+	template <typename T>
+	T subrange(typename T::iterator, typename T::iterator) const;
+	
+	template <typename T>
+	void binary_search_sort(T&, pair_vector&, typename T::iterator) const;
+
+	template <typename T>
+	T sort(T&, typename T::iterator);
 	
 	//exceptions
 	class Error: public std::exception{
@@ -76,5 +80,7 @@ public:
 	};
 };
 
+template <typename container, typename value>
+static const typename container::iterator emplace(container&, typename container::iterator, value);
 
 #endif
