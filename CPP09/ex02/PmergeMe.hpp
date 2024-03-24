@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/24 18:18:30 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/24 19:03:07 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ public:
 	bool is_sorted(T, typename T::iterator) const;
 
 	template <typename T>
-	T subrange(typename T::iterator, typename T::iterator) const;
+	static T subrange(typename T::iterator, typename T::iterator);
 	
 	template <typename T>
 	void binary_search_sort(T&, pair_vector&, typename T::iterator) const;

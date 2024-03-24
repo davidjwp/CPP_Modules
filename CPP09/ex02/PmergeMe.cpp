@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/24 18:41:43 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/24 19:03:06 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void PM::swap(unsigned int& first, unsigned int& second) const{
 #define INDEX(begin, it)(begin - it)
 
 template <typename T>
-T PM::subrange(typename T::iterator start, typename T::iterator end) const{ return T(mid, end);}
+T PM::subrange(typename T::iterator start, typename T::iterator end){ return T(start, end);}
 
 #define TO_INT(range, it)(range.begin() - it)
 
@@ -107,7 +107,7 @@ void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator la
 	for (typename T::iterator range_it = range.begin(); pend.size(); pend.erase(pend.begin())){
 		while(range.size() > 1){
 			if (TO_INT(range, mid) >= (range.size() / 2)) range = subrange(mid, range.end());
-			else range = subrange(range.begin(), mid);
+			else range = PM::subrange(range.begin(), mid);
 			mid = range.begin() + (range.size() / 2);
 		}
 		emplace(main_chain, main_chain.begin() + TO_INT(range, mid), *mid);
