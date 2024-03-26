@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/24 19:03:06 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/26 21:53:37 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <utility>
+#include <deque>
+#include <vector>
 
 PM::PM(){}
 
@@ -27,26 +29,30 @@ PM& PM::operator=(PM& P){static_cast<void>(P); return P;}
 
 #define T_MIDDLE(T)(T.begin() + static_cast<unsigned int>(T.size() / 2))
 
-unsigned int PM::sum(pair_vector::iterator it) const{return (*it).first + (*it).second;}
+template <typename T>
+void PM::assignement(T* src, T& dst){
+	dst.clear();
 
-template <typename container, typename value>
-static const typename container::iterator emplace(container& ty, typename container::iterator ty_it, value val){
-	typename container::iterator end = ty.end();
+	for (typename T::iterator it = (*src).begin(); it != (*src).end(); it++)
+		dst.push_back(*it);
+}
+
+template <typename container, typename value, typename iterator>
+static const iterator emplace(container& ty, iterator ty_it, value val){
+	iterator end = ty.end();
 	container tmp;
 
 	ty.push_back(0);
-	for (type_iterator it = ty.begin(); it != ty.end(); it++){
-		if (tmp.size()) {*it = *tmp;}
+	for (iterator it = ty.begin(); it != ty.end(); it++){
+		if (tmp.size()) {*it = *tmp.begin();}
 		if ((ty.begin() - it) == (ty.begin() - ty_it)){
-			for (type_iterator tmp_it = it; it != ty.end(); tmp_it++)
+			for (iterator tmp_it = it; it != ty.end(); tmp_it++)
 				tmp.push_back(*tmp_it);
 			*it = val;
 		}
 	}
+	return end;
 }
-
-//highest is a main chain
-//lowest is a pend
 
 //recursively sort pairs, first sort elements in the pairs then sort the pairs themselves 
 void PM::sort_pairs(pair_vector& pairs, pair_vector::iterator curr) const{
@@ -68,13 +74,13 @@ void PM::sort_pairs(pair_vector& pairs, pair_vector::iterator curr) const{
 }
 
 //it = list.begin() + 1
-template <typename T>
-bool PM::is_sorted(T list, typename T::iterator it) const{
-	for (T_it old = it - 1; it != list.end(); old = it, it++){
-		if (*old > *it) return false;
-		}
-	return true;
-}
+//template <typename T>
+//bool PM::is_sorted(T list, typename T::iterator it) const{
+//	for (T_it old = it - 1; it != list.end(); old = it, it++){
+//		if (*old > *it) return false;
+//		}
+//	return true;
+//}
 
 void PM::swap(unsigned int& first, unsigned int& second) const{
 	unsigned int swap = first;
@@ -84,13 +90,13 @@ void PM::swap(unsigned int& first, unsigned int& second) const{
 
 #define INDEX(begin, it)(begin - it)
 
-template <typename T>
-T PM::subrange(typename T::iterator start, typename T::iterator end){ return T(start, end);}
+template <typename T, typename T_it, typename T_ptr>
+T_ptr PM::subrange(T_it start, T_it end, T type, T_ptr){(void)type; return new T(start, end);}
 
-#define TO_INT(range, it)(range.begin() - it)
+#define TO_INT(range, it)(static_cast<unsigned int>(range.begin() - it))
 
 template <typename T>
-void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator last) const{
+void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator last) {
 	T pend;
 	T main_chain;
 
@@ -102,15 +108,21 @@ void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator la
 
 	if (last != list.end()) pend.push_back(*last);
 
-	typename T::iterator mid = main_chain.begin() - (main_chain.size() / 2);
-	T range = main_chain;
+	//T *sub;
+	T range;
+	typename T::iterator mid;
 	for (typename T::iterator range_it = range.begin(); pend.size(); pend.erase(pend.begin())){
+		range = main_chain;
+		mid = range.begin() + static_cast<unsigned int>(range.size() / 2);
 		while(range.size() > 1){
-			if (TO_INT(range, mid) >= (range.size() / 2)) range = subrange(mid, range.end());
-			else range = PM::subrange(range.begin(), mid);
-			mid = range.begin() + (range.size() / 2);
+			typename T::iterator limit = mid;
+			*mid <= *pend.begin() ? limit = (range.end() - 1) : mid = range.begin();
+			//TO_INT(range, mid) >= (range.size() / 2) ? limit = range.end() : limit = range.begin();			
+			assignement(new T(mid, limit), range);
+			mid = range.begin() + static_cast<unsigned int>(range.size() / 2);
 		}
-		emplace(main_chain, main_chain.begin() + TO_INT(range, mid), *mid);
+		emplace(main_chain, main_chain.begin() + TO_INT(range, mid), *mid);//give at placement the first pending
+		(void)range_it;
 	}
 }
 
@@ -124,8 +136,8 @@ T PM::sort(T& list, typename T::iterator middle){
 	if (list.size() % 2) last--;
 
 	//group pair
-	for (typename T::iterator it = list.begin(); it + 1 != list.end() - 1;){
-		if ((it + 1) != last) {pairs.push_back(std::make_pair(*it, *(it + 1))); it += 2;}
+	for (typename T::iterator it = list.begin(); it != list.end();){
+		if ((it) != last) {pairs.push_back(std::make_pair(*it, *(it + 1))); it += 2;}
 		else it++;
 	}
 
@@ -142,16 +154,6 @@ T PM::sort(T& list, typename T::iterator middle){
 	return list;
 }
 
-void PM::print() const{
-	std::cout << "Before:\t";
-	for (size_t i = 0; unsorted[i]; i++)
-		std::cout << unsorted[i] << 32;
-	std::cout << std::endl << "After:\t";
-	for (size_t i = 0; _vector[i]; i++)
-		std::cout << _vector[i] << 32;
-	std::cout << std::endl;
-}
-
 void PM::start(){
 	unsorted = _vector;
 	sort(_vector, T_MIDDLE(_vector));
@@ -161,11 +163,12 @@ void PM::start(){
 
 void PM::Parsing(char **av){
 
-	for (size_t i = 0; av[i] += NULL;){ i++;
+	for (size_t i = 0; av[i + 1] != NULL;){ i++;
 		if (av[i] == NULL && i <= 2) throw Error("not enough values.");
 		double d = atof(av[i]);
 		if (d != static_cast<unsigned int>(d)) throw Error("value is not a whole positive number");
-		_vector.push_back(atoi(av[1]));
+		else if (d < 0) throw Error("value is non-positive");
+		_vector.push_back(atoi(av[i]));
 		_deque.push_back(atoi(av[i]));
 	}
 }
@@ -177,3 +180,14 @@ void PM::output_time() const{
 	std::cout << "Time to process a range of " << _vector.size() << " elements with std::deque" <<
 	": " << _deque_time << " s" << std::endl;	
 }
+
+void PM::print() const{
+	std::cout << "Before:\t";
+	for (size_t i = 0; unsorted[i]; i++)
+		std::cout << unsorted[i] << 32;
+	std::cout << std::endl << "After:\t";
+	for (size_t i = 0; _vector[i]; i++)
+		std::cout << _vector[i] << 32;
+	std::cout << std::endl;
+}
+// 2 5 1 6 3 7 4 9 8

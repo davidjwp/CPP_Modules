@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 19:28:19 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/24 16:23:26 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/26 18:26:51 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	main(int ac, char **av){
 	{
 		if ((time(&start_time)) == -1) throw PM::Error("time() fail.");
 		
-		PM Pmerge(av);
+		PM Pmerge;
 		Pmerge.Parsing(av);
 		Pmerge.start();
 
 		Pmerge.print();
-		Pmerge.output_time(Pmerge.start_time);
+		Pmerge.output_time();
 	}
 	catch (std::exception &E){ std::cout << E.what() << std::endl; return 2;}
 

@@ -4,6 +4,7 @@
 
 int	main(void)
 {
+	int ok = 0, char ok = 'c';
 	std::vector<int> vec = {1, 23, 45};
 
 	vec.emplace(vec.begin() + 1, 32);
