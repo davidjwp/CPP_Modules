@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/26 21:53:37 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:29:40 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <iostream>
 #include <exception>
 #include <cstdlib>
-#include <ctime>
 #include <utility>
 #include <deque>
 #include <vector>
+#include <sys/time.h>
 
 PM::PM(){}
 
@@ -27,80 +27,74 @@ PM::PM(PM& cpy){static_cast<void>(cpy);}
 
 PM& PM::operator=(PM& P){static_cast<void>(P); return P;}
 
-#define T_MIDDLE(T)(T.begin() + static_cast<unsigned int>(T.size() / 2))
+double getElapsedTime(timeval start, timeval end){
+	long seconds = end.tv_sec - start.tv_sec;
+	long microseconds = end.tv_usec - start.tv_usec;
+	return seconds + microseconds*1e-6;
+}
 
+//convert an iterator to it's position in the container
 template <typename T>
-void PM::assignement(T* src, T& dst){
+static size_t to_int(T type, typename T::iterator it) {
+		size_t i = 0;
+
+	for (typename T::iterator ty = type.begin(); *ty != *it; ty++)
+		i++;
+	return i;
+}
+
+//assign a ranged container to another container
+template <typename T, typename T_iterator>
+static void assignement(T_iterator start, T_iterator end, T& dst){
+	T src = T(start, end);
 	dst.clear();
 
-	for (typename T::iterator it = (*src).begin(); it != (*src).end(); it++)
+	for (typename T::iterator it = src.begin(); it != src.end(); it++)
 		dst.push_back(*it);
 }
 
-template <typename container, typename value, typename iterator>
-static const iterator emplace(container& ty, iterator ty_it, value val){
-	iterator end = ty.end();
+//works like the emplace container member function in c++11 
+template <typename container, typename value>
+static void emplace(container& ty, unsigned int ty_i, value val){
 	container tmp;
 
-	ty.push_back(0);
-	for (iterator it = ty.begin(); it != ty.end(); it++){
-		if (tmp.size()) {*it = *tmp.begin();}
-		if ((ty.begin() - it) == (ty.begin() - ty_it)){
-			for (iterator tmp_it = it; it != ty.end(); tmp_it++)
+	for (typename container::iterator it = ty.begin(); it != ty.end(); it++){
+		if (to_int(ty, it) == ty_i){
+			tmp.push_back(val);
+			for (typename container::iterator tmp_it = it; tmp_it != ty.end(); tmp_it++) {
 				tmp.push_back(*tmp_it);
-			*it = val;
+				if (it != ty.end() - 1) it++;
+				}
 		}
+		else tmp.push_back(*it);
 	}
-	return end;
+	ty.clear();
+	assignement(tmp.begin(), tmp.end(), ty);
 }
 
 //recursively sort pairs, first sort elements in the pairs then sort the pairs themselves 
 void PM::sort_pairs(pair_vector& pairs, pair_vector::iterator curr) const{
-	unsigned int swap = (*curr).first;
-
 	if (curr != pairs.end()){
 		sort_pairs(pairs, curr + 1);
 		if ((*curr).second < (*curr).first) {
+			unsigned int swap = (*curr).first;
 			(*curr).first = (*curr).second;
 			(*curr).second = swap;}
 		pair_vector::iterator lowest = curr;
 		for (pair_vector::iterator it = curr + 1; it != pairs.end(); it++)
 			if ((*it).second < (*lowest).second) lowest = it;
-		pair_vector::iterator swap = curr;//check that
-		curr = lowest;//and that
-		lowest = swap;//that too
+		pair_vector::iterator swap = curr;
+		curr = lowest;
+		lowest = swap;
 	}
 	return ;
 }
-
-//it = list.begin() + 1
-//template <typename T>
-//bool PM::is_sorted(T list, typename T::iterator it) const{
-//	for (T_it old = it - 1; it != list.end(); old = it, it++){
-//		if (*old > *it) return false;
-//		}
-//	return true;
-//}
-
-void PM::swap(unsigned int& first, unsigned int& second) const{
-	unsigned int swap = first;
-	first = second;
-	second = swap;
-}
-
-#define INDEX(begin, it)(begin - it)
-
-template <typename T, typename T_it, typename T_ptr>
-T_ptr PM::subrange(T_it start, T_it end, T type, T_ptr){(void)type; return new T(start, end);}
-
-#define TO_INT(range, it)(static_cast<unsigned int>(range.begin() - it))
 
 template <typename T>
 void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator last) {
 	T pend;
 	T main_chain;
 
-	(void)list;
 	for (pair_vector::iterator it = pairs.begin(); it != pairs.end(); it++){
 		pend.push_back((*it).first);
 		main_chain.push_back((*it).second);
@@ -108,61 +102,45 @@ void PM::binary_search_sort(T& list, pair_vector& pairs, typename T::iterator la
 
 	if (last != list.end()) pend.push_back(*last);
 
-	//T *sub;
 	T range;
-	typename T::iterator mid;
-	for (typename T::iterator range_it = range.begin(); pend.size(); pend.erase(pend.begin())){
+	for (typename T::iterator mid; pend.size(); pend.erase(pend.begin())){
 		range = main_chain;
 		mid = range.begin() + static_cast<unsigned int>(range.size() / 2);
-		while(range.size() > 1){
-			typename T::iterator limit = mid;
-			*mid <= *pend.begin() ? limit = (range.end() - 1) : mid = range.begin();
-			//TO_INT(range, mid) >= (range.size() / 2) ? limit = range.end() : limit = range.begin();			
-			assignement(new T(mid, limit), range);
+		while(range.size() > 2){
+			typename T::iterator limit = mid + 1;
+			*mid <= *pend.begin() ? limit = range.end() : mid = range.begin();
+			assignement(mid, limit, range);
 			mid = range.begin() + static_cast<unsigned int>(range.size() / 2);
 		}
-		emplace(main_chain, main_chain.begin() + TO_INT(range, mid), *mid);//give at placement the first pending
-		(void)range_it;
+		*range.begin() > *pend.begin() ? mid = range.begin() : mid = range.end() - 1;
+		emplace(main_chain, to_int(main_chain, mid), *pend.begin());
 	}
+	assignement(main_chain.begin(), main_chain.end(), list);
 }
 
 template <typename T>
-T PM::sort(T& list, typename T::iterator middle){
+T PM::sort(T& list){
 	pair_vector pairs;
-	T probes;
 	
-	(void)middle;
 	typename T::iterator last = list.end();
 	if (list.size() % 2) last--;
 
-	//group pair
+	//turn the container into pairs
 	for (typename T::iterator it = list.begin(); it != list.end();){
 		if ((it) != last) {pairs.push_back(std::make_pair(*it, *(it + 1))); it += 2;}
 		else it++;
 	}
 
-	//sort pairs
 	sort_pairs(pairs, pairs.begin());
-
-	//binary search
 	binary_search_sort(list, pairs, last);
-
-	//for (pair_vector::iterator it = pairs.begin(); it != pairs.end(); it++){
-	//	if ((*it).first > (*it).second) probes.push_back((*it).second);
-	//	else probes.push_back((*it).first);
-	//}
 	return list;
 }
 
-void PM::start(){
-	unsorted = _vector;
-	sort(_vector, T_MIDDLE(_vector));
-	_vector_time = difftime(start_time, time(NULL));
-	sort(_deque, T_MIDDLE(_deque));
-	_deque_time = difftime(start_time, time(NULL));}
 
-void PM::Parsing(char **av){
+void PM::start(char**av){
+	if (gettimeofday(&start_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
 
+	//Parsing
 	for (size_t i = 0; av[i + 1] != NULL;){ i++;
 		if (av[i] == NULL && i <= 2) throw Error("not enough values.");
 		double d = atof(av[i]);
@@ -171,23 +149,30 @@ void PM::Parsing(char **av){
 		_vector.push_back(atoi(av[i]));
 		_deque.push_back(atoi(av[i]));
 	}
-}
 
-void PM::output_time() const{
+	unsorted = _vector;
+	sort(_vector);
+	if (gettimeofday(&end_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
+	_vector_time = getElapsedTime(start_time, end_time);
+	sort(_deque);
+	if (gettimeofday(&end_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
+	_deque_time = getElapsedTime(start_time, end_time);
+
+	//Print
+	std::cout << "Before:\t";
+	for (uint_vector::iterator i = unsorted.begin(); i != unsorted.end(); i++)
+		std::cout << *i << ' ';
+	std::cout << std::endl << "After:\t";
+	for (uint_vector::iterator i = _vector.begin(); i != _vector.end(); i++)
+		std::cout << *i << ' ';
+	std::cout << std::endl;
+
+	//Print time
 	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector" <<
-	": " << _vector_time << " s" << std::endl;
+	": " << _vector_time << " seconds" << std::endl;
 
 	std::cout << "Time to process a range of " << _vector.size() << " elements with std::deque" <<
-	": " << _deque_time << " s" << std::endl;	
+	": " << _deque_time << " seconds" << std::endl;	
 }
 
-void PM::print() const{
-	std::cout << "Before:\t";
-	for (size_t i = 0; unsorted[i]; i++)
-		std::cout << unsorted[i] << 32;
-	std::cout << std::endl << "After:\t";
-	for (size_t i = 0; _vector[i]; i++)
-		std::cout << _vector[i] << 32;
-	std::cout << std::endl;
-}
 // 2 5 1 6 3 7 4 9 8
