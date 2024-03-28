@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/28 18:15:17 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:47:03 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,24 @@ private:
 	PM(PM&);
 	PM& operator=(PM&);
 
+	void sort_pairs(pair_vector&, pair_vector::iterator) const;
+	template <typename T>
+	void binary_search_sort(T&, pair_vector&, typename T::iterator) ;
+	template <typename T>
+	T sort(T&);	
+	bool is_num(char*) const;
 public:
 	
 	PM();
 	~PM();
 
 	void start(char**);
-	void sort_pairs(pair_vector&, pair_vector::iterator) const;
-
-
-	template <typename T>
-	void binary_search_sort(T&, pair_vector&, typename T::iterator) ;
-
-	template <typename T>
-	T sort(T&);	
-	
 	//exceptions
 	class Error: public std::exception{
 		std::string error;
 	public:
 		Error(){};
-		Error(std::string msg){error = "Error: "; error + msg;}
+		Error(std::string msg){error = "Error: "; error += msg;}
 		virtual ~Error() throw (){};
 		const char* what() const throw (){return error.c_str();}
 	};

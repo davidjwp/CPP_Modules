@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/28 18:29:40 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:48:07 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,18 @@ T PM::sort(T& list){
 	return list;
 }
 
+bool PM::is_num(char* av) const{
+	for (unsigned int i = 0; av[i]; i++)
+		if (!((av[i] == 46 || av[i] == 45) || (av[i] >= 48 && av[i] <= 57))) return false;
+	return true;
+}
 
 void PM::start(char**av){
 	if (gettimeofday(&start_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
 
 	//Parsing
 	for (size_t i = 0; av[i + 1] != NULL;){ i++;
+		if (!is_num(av[i])) throw Error("bad symbols.");
 		if (av[i] == NULL && i <= 2) throw Error("not enough values.");
 		double d = atof(av[i]);
 		if (d != static_cast<unsigned int>(d)) throw Error("value is not a whole positive number");
