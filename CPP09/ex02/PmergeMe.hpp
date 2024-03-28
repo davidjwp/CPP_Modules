@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/28 18:47:03 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:18:33 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ public:
 	~PM();
 
 	void start(char**);
+
 	//exceptions
 	class Error: public std::exception{
 		std::string error;
@@ -71,5 +72,8 @@ void assignement(T_iterator, T_iterator, T&);
 
 template <typename container, typename value>
 static void emplace(container&, unsigned int, value);
+
+template <typename T>
+static void swap(T&, T&);
 
 #endif
