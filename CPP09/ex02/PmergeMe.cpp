@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/28 19:41:35 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:45:39 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ static void assignement(T_iterator start, T_iterator end, T& dst){
 		dst.push_back(*it);
 }
 
+template <typename T>
+static void T_swap(T& first, T& second){
+	T swap = first;
+	first = second;
+	second = swap;
+}
+
 //works like the emplace container member function in c++11 
 template <typename container, typename value>
 static void emplace(container& ty, unsigned int ty_i, value val){
@@ -70,13 +77,6 @@ static void emplace(container& ty, unsigned int ty_i, value val){
 	}
 	ty.clear();
 	assignement(tmp.begin(), tmp.end(), ty);
-}
-
-template <typename T>
-static void T_swap(T& first, T& second){
-	T swap = first;
-	first = second;
-	second = swap;
 }
 
 //recursively sort pairs, first sort elements in the pairs then sort the pairs themselves 

@@ -6,7 +6,7 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 16:15:48 by djacobs           #+#    #+#              #
-#    Updated: 2024/02/14 19:37:30 by djacobs          ###   ########.fr        #
+#    Updated: 2024/03/28 20:12:38 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= AForm
 
 CC		= c++
 
-CFLAGS	= -g -fPIE -std=c++98 -Wall -Werror -Wextra
+CFLAGS	= -g -std=c++98 -Wall -Werror -Wextra
 
 HEADER	= 	AForm.hpp Bureaucrat.hpp \
 			PresidentialPardonForm.hpp \

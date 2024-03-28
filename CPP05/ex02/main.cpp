@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:22:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/14 20:33:19 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 20:50:35 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int	main(void)
 {
 	try {
-		Bureaucrat dude("john", 10);
+		Bureaucrat dude("john", 5);
 		PresidentialPardonForm form(dude.getName());
 		dude.signForm(form);
 		dude.executeForm(form);
@@ -39,7 +39,7 @@ int	main(void)
 		std::cerr << "Exception: " << e.what() << '\n'  << std::endl;
 	}
 	try {
-		Bureaucrat dude("spaghetti", 73);
+		Bureaucrat dude("spaghetti", 43);
 		RobotomyRequestForm	form("gagaga");
 		dude.signForm(form);
 		dude.executeForm(form);

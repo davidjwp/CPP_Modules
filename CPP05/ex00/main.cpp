@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:22:15 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/15 18:06:00 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 19:52:45 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(void)
 	} catch (std::exception & e) {
 		std::cerr << "Exception: " << e.what() << '\n'  << std::endl;
 	}
-	try {
+	try {	
 		Bureaucrat dude("falafel", 150);
 		Bureaucrat::decreaseGrade(dude);
 		std::cout << dude << '\n' << std::endl;

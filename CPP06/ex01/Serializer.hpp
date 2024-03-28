@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:44:39 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/18 19:51:36 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:21:23 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ struct Data{
 };
 
 class Serializer{
-
-public:
+private:
 	Serializer();
 	Serializer(Serializer&);
+
+public:
 	~Serializer();
 
 	Serializer& operator=(Serializer&);
