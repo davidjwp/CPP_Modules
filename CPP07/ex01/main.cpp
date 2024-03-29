@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidjwp <davidjwp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:15:41 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/02/20 14:27:39 by davidjwp         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:11:43 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 #define LEN 5
 
-void increase(int& val){val+=5;}
+template <typename T>
+void increase(T& val){val+=5;}
 
-void change(char& c){c += 5;}
+template <typename T>
+void decrease(T& c){c -= 5;}
 
-void print(int& val){std::cout << val << " ";}
+template <typename T>
+void print(T& val){std::cout << val << " ";}
 
 int	main(void)
 {
@@ -29,7 +32,7 @@ int	main(void)
 	iter(arr1, LEN, increase);
 	iter(arr1, LEN, print);
 	std::cout << std::endl;
-	iter(arr2, LEN, change);
+	iter(arr2, LEN, decrease);
 	std::cout << arr2 << std::endl;
 	return 0;
 }

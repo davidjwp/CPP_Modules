@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:35:04 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/02/21 18:21:57 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/29 20:24:28 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 
 public:
 	Array(unsigned int);
-	Array(const Array<T>&);
+	Array(Array<T>&);
 	Array(unsigned int, int);
 	~Array();
 	Array<T>& operator=(Array<T>&);

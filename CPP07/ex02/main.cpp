@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:47 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/02/21 18:39:32 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/29 20:47:03 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 int	main(void)
 {
 	try{
+		Array<int> ok();
+		(void)ok;
 		Array<int> P(5, 3);
 		Array<char> P2(std::string(ARRAY).length());
 

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:36:51 by davidjwp          #+#    #+#             */
-/*   Updated: 2024/02/21 18:24:50 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/29 20:20:35 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Array<T>::Array(unsigned int n, int val): _size(n){
 }
 
 template <typename T>
-Array<T>::Array(const Array& t): _size(t.size()){
+Array<T>::Array(Array& t): _size(t.size()){
 	_ptr = new T[t.size()];
 	for (unsigned int i = 0; i < size(); i++)
 		_ptr[i] = t.getElement(i);
@@ -47,7 +47,7 @@ Array<T>& Array<T>::operator=(Array<T>& A){
 }
 
 template <typename T>
-T& Array<T>::operator[](unsigned int N){return _ptr[N];}
+T& Array<T>::operator[](unsigned int N){if (N >= size()) {throw IndexOutOfArray(); return _ptr[0];} return _ptr[N];}
 
 template <typename T>
 T Array<T>::getElement(unsigned int n){if (n >= size()) throw IndexOutOfArray(); return _ptr[n];}
