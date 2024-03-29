@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:49:46 by djacobs           #+#    #+#             */
-/*   Updated: 2024/02/24 21:05:44 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/03/29 21:41:44 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	main(void){
 	int	arr[] = VECTOR
-	
+
 	std::vector<int> vec(arr, arr + sizeof(arr) / sizeof(int));
 	std::deque<int> que(arr, arr + sizeof(arr) / sizeof(int));
 	try{
