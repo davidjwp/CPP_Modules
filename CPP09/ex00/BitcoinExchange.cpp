@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:23:50 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/17 19:02:00 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/01 03:08:33 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ BitcoinExchange::BitcoinExchange(std::ifstream& input_file){
 	lint	dat;
 	std::list<lint>::iterator p;//the iterator for the date vector corresponding to the input file date or the closest from it.
 
-	std::getline(input_file, line);
+	//std::getline(input_file, line);
 	while (input_file && !input_file.eof()){
 		std::getline(input_file, line);
 
