@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/28 19:18:33 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:38:34 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <vector>
 #include <deque>
-//#include <ctime>
 #include <string>
 #include <sys/time.h>
 
@@ -65,10 +64,10 @@ public:
 };
 
 template <typename T>
-size_t to_int(T, typename T::iterator);
+static size_t to_int(T, typename T::iterator);
 
 template <typename T, typename T_iterator>
-void assignement(T_iterator, T_iterator, T&);
+static void assignement(T_iterator, T_iterator, T&);
 
 template <typename container, typename value>
 static void emplace(container&, unsigned int, value);

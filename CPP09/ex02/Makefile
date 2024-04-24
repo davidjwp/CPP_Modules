@@ -6,13 +6,13 @@
 #    By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 07:05:56 by davidjwp          #+#    #+#              #
-#    Updated: 2024/03/24 16:23:58 by djacobs          ###   ########.fr        #
+#    Updated: 2024/04/24 17:37:42 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= PmergeMe
 
-CC		= g++
+CC		= c++
 
 CFLAGS	= -g -std=c++98 -Wextra -Werror -Wall 
 
