@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:23:50 by djacobs           #+#    #+#             */
-/*   Updated: 2024/04/24 17:49:11 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/29 21:47:57 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,30 @@
 #include <algorithm>
 #include <iterator>
 #include <list>
+
+Smallest::Smallest(){}
+
+Smallest::~Smallest(){}
+
+Smallest::Smallest(const Smallest& cpy): _target(cpy._target){}
+
+Smallest& Smallest::operator=(const Smallest& as){_target = as._target; return *this;}
+
+Smallest::Smallest(const lint target): _target(target){}
+
+bool Smallest::operator()(lint A, lint B) const{ return std::abs(A - _target) < std::abs(B - _target);}
+
+const char* Error::what() const throw() {return _msg.c_str();}
+
+Error::Error(): _msg(std::string("Error: ")){}
+
+Error::Error(const char* msg): _msg(std::string("Error: ") + msg){}
+
+Error::Error(const Error& cpy): _msg(cpy._msg){}
+
+Error::~Error() throw() {}
+
+Error& Error::operator=(const Error& as){_msg = as._msg; return *this;}
 
 BitcoinExchange::BitcoinExchange(){}
 
@@ -27,7 +51,7 @@ BitcoinExchange::BitcoinExchange(std::ifstream& input_file){
 	CSV.open("data.csv");
 
 	//checks if the file is open properly
-	if (!CSV.is_open()){input_file.close(); throw CannotOpenFile();}
+	if (!CSV.is_open()){input_file.close(); throw Error("could not open file");}
 	//this function creates the date and value vector from the csv file, it also throws.
 	_BitcoinExchange();
 
@@ -44,7 +68,7 @@ BitcoinExchange::BitcoinExchange(std::ifstream& input_file){
 		std::getline(input_file, line);
 
 		//if there is a line and the date evaluation isn't 0 meaning that the date is correct.
-		if (line[0] && (dat = eval_date(file_date = std::string(line.substr(0, line.find_first_of('|'))), "input_file", l_num)) != 0) {
+		if (line[0] && (dat = eval_date(file_date = std::string(line.substr(0, line.find_first_of('|'))), "input_file")) != 0) {
 			
 			//create the date iterator using find, if the date is not found then look the closest date using a functor
 			if ((p = std::find(date.begin(), date.end(), dat)) == date.end()) 
@@ -84,24 +108,13 @@ void BitcoinExchange::reset_buffer(){CSV.clear(); CSV.seekg(0); /*index = 0;*/}
 evaluates the date in string format and returns the encoded version, in case of an error throws an exception for the "CSV" file
 and returns 0 for the "input_file".
 */
-lint	BitcoinExchange::eval_date(std::string string_date, std::string File, unsigned short int l_num){
+lint	BitcoinExchange::eval_date(std::string string_date, std::string File){
 	sint	year, month, day;
 
 	year = atoi(string_date.substr(0, string_date.find_first_of('-')).c_str());
 	month = atoi(string_date.substr(string_date.find_first_of('-') + 1, string_date.find_last_of('-')).c_str());
 	day = atoi(string_date.substr(string_date.find_last_of('-') + 1, string_date.length()).c_str());
 	
-	if (year < 0 || month > 12 || month < 0 ||
-		day > 31 || day < 0){
-		if (!File.compare("CSV")) throw FilebadDay(File);
-		else if (!l_num) return 0;
-		else {std::cerr << "Error: bad input => " << year<<'-'<<month<<'-'<<day << std::endl; return 0;}}
-
-	if ((month == 2 && day > 29) || ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30))
-		{if (!File.compare("CSV")) throw FilebadDay(File);
-		 else if (!l_num) return 0;
-		 else {std::cerr << "Error: bad date => " << year<<'-'<<month<<'-'<<day << std::endl; return 0;}}
-
 	if (!File.compare("CSV"))
 		date.push_back(BitcoinExchange::encode(year, month, day));
 	return BitcoinExchange::encode(year, month, day);
@@ -118,12 +131,12 @@ void BitcoinExchange::_BitcoinExchange(){
 	while (CSV){
 		std::getline(CSV, line);
 		if (line[0]) {
-			eval_date(line.substr(0, line.find_first_of(',')), "CSV", l_num);
+			eval_date(line.substr(0, line.find_first_of(',')), "CSV");
 
 			line = line.substr(line.find_first_of(',') + 1, line.length());
-			if (!line[0] || line[0] == 32) throw FileBadValue(file);
+			if (!line[0] || line[0] == 32) throw Error("File has bad values");
 			float tval = atof(line.c_str());
-			if (tval < 0 || tval >= 2147483647.0) throw FileBadValue(file);
+			if (tval < 0 || tval >= 2147483647.0) throw Error("File has bad values");
 			value.push_back(tval);
 			l_num++;
 		}

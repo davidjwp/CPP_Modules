@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:53:00 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/16 19:03:21 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/29 21:56:57 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,26 @@ private:
 	bool is_operation(char) const;
 	float num_len(std::string::iterator) const;
 
-//	Exceptions //============================================================//
-	class WrongInput: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Wrong input";}
-	};
-	class ValueTooHigh: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Values too high";}
-	};
-	class EmptyString: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Empty string";}
-	};
-	class MissingOperations: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Missing operations";}
-	};
-	class MissingOperands: public std::exception{
-	public:
-		const char* what() const throw() { return "Error: Missing operands";}	
-	};
-
 public:
 	RPN(std::string);
 	~RPN();
 	
 	void calculate();
 	bool is_op(char c);
+};
+
+class Error: std::exception{
+private:
+	std::string _msg;
+
+public:
+	Error();
+	virtual ~Error() throw();
+	Error(const char*);
+	Error(const Error&);
+	
+	Error& operator=(const Error&);
+	const char* what() const throw();
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 02:20:59 by djacobs           #+#    #+#             */
-/*   Updated: 2024/04/24 17:38:34 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/29 22:13:36 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ private:
 
 	void sort_pairs(pair_vector&, pair_vector::iterator) const;
 	template <typename T>
-	void binary_search_sort(T&, pair_vector&, typename T::iterator) ;
+	void binary_search_sort(T&, pair_vector&, typename T::iterator);
 	template <typename T>
 	T sort(T&);	
 	bool is_num(char*) const;
@@ -50,17 +50,6 @@ public:
 	~PM();
 
 	void start(char**);
-
-	//exceptions
-	class Error: public std::exception{
-		std::string error;
-	public:
-		Error(){};
-		Error(std::string msg){error = "Error: "; error += msg;}
-		virtual ~Error() throw (){};
-		const char* what() const throw (){return error.c_str();}
-	};
-
 };
 
 template <typename T>
@@ -74,5 +63,19 @@ static void emplace(container&, unsigned int, value);
 
 template <typename T>
 static void swap(T&, T&);
+
+class Error: public std::exception{
+private:
+	std::string _msg;
+
+public:
+	Error();
+	virtual ~Error() throw();
+	Error(const char*);
+	Error(const Error&);
+
+	Error& operator=(const Error&);
+	const char* what() const throw();
+};
 
 #endif

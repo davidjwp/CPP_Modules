@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:04:22 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/28 19:45:39 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/29 22:14:07 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 #include <deque>
 #include <vector>
 #include <sys/time.h>
+
+Error::Error(): _msg(std::string("Error: ")){}
+
+Error::Error(const Error& cpy): _msg(cpy._msg){}
+
+Error::~Error() throw(){}
+
+Error::Error(const char* msg): _msg(std::string("Error: ") + msg){}
+
+Error& Error::operator=(const Error& as){_msg = as._msg; return *this;}
+
+const char* Error::what() const throw(){return _msg.c_str();}
 
 PM::PM(){}
 
@@ -143,7 +155,7 @@ bool PM::is_num(char* av) const{
 }
 
 void PM::start(char**av){
-	if (gettimeofday(&start_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
+	if (gettimeofday(&start_time, NULL) == -1) throw Error("gettimeofday() fail.");
 
 	//Parsing
 	for (size_t i = 0; av[i + 1] != NULL;){ i++;
@@ -158,10 +170,10 @@ void PM::start(char**av){
 
 	unsorted = _vector;
 	sort(_vector);
-	if (gettimeofday(&end_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
+	if (gettimeofday(&end_time, NULL) == -1) throw Error("gettimeofday() fail.");
 	_vector_time = getElapsedTime(start_time, end_time);
 	sort(_deque);
-	if (gettimeofday(&end_time, NULL) == -1) throw PM::Error("gettimeofday() fail.");
+	if (gettimeofday(&end_time, NULL) == -1) throw Error("gettimeofday() fail.");
 	_deque_time = getElapsedTime(start_time, end_time);
 
 	//Print

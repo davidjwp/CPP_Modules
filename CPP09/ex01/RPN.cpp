@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:58:09 by djacobs           #+#    #+#             */
-/*   Updated: 2024/03/16 19:26:05 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/29 22:04:50 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 #include <stack>
 #include <algorithm>
 #include <climits>
+
+Error::Error(): _msg(std::string("Error: ")){}
+
+Error::~Error() throw(){}
+
+Error::Error(const Error& cpy): _msg(cpy._msg){}
+
+Error& Error::operator=(const Error& as){_msg = as._msg; return *this;}
+
+Error::Error(const char* msg): _msg(std::string("Error: ") + msg) {}
+
+const char* Error::what() const throw() {return _msg.c_str();}
 
 RPN::RPN(){}
 
@@ -53,7 +65,7 @@ void RPN::calculate(){
 
 	while (find_op()){
 
-		if (_table.size() == 1 && _table.top() < 10) throw WrongInput();//check last one
+		if (_table.size() == 1 && _table.top() < 10) throw Error("Wrong input");//check last one
 
 		if (stack_result.size() >= 2 && is_operation(_table.top())) {
 			char op = _table.top(); _table.pop();
@@ -79,27 +91,27 @@ void RPN::parsing(std::string op){
 	std::string str(op);
 
 	//first checks to make sure that the string is not empty and isn't missing anything
-	if (!op.size() || FIND(op, NUMOP) == SFAIL) throw EmptyString();
-	if (FIND(op, OP) == SFAIL) throw MissingOperations();
-	if (FIND(op, NUM) == SFAIL) throw MissingOperands();
+	if (!op.size() || FIND(op, NUMOP) == SFAIL) throw Error("Empty string");
+	if (FIND(op, OP) == SFAIL) throw Error("Missing operations");
+	if (FIND(op, NUM) == SFAIL) throw Error("Missing operands");
 
 	//finds any non number character or non operation character
 	for (std::string::iterator i = op.begin(); i != op.end(); i++)
-		if(!((*i >= 48 && *i <= 57) || ((*i >= 45 && *i <= 47) || *i == 43 || *i == 42 || *i == 32))) throw WrongInput();
+		if(!((*i >= 48 && *i <= 57) || ((*i >= 45 && *i <= 47) || *i == 43 || *i == 42 || *i == 32))) throw Error("Wrong input");
 
 	//check that there is at least one operator while making sure they are not conflated with negative numbers 
 	{
 	bool ops = false;
 	for (long unsigned int i = op.find_first_of(OP, 0); i != SFAIL; i = op.find_first_of(OP, i + 1))
 		if (i != SFAIL && (i + 1 == IT_INDEX(op, op.end()) || !(op[i + 1] >= 48 && op[i + 1] <= 57)))  {ops = true; break ;}
-	if (!ops) throw MissingOperations();
+	if (!ops) throw Error("Missing operations");
 	}
 	
 	//check the integrity of float numbers 
 	{
 		for (long unsigned int i = FIND(op, '.'); i != SFAIL; i = op.find_first_of('.', i + 1)){
-			if (!i || i + 1 == IT_INDEX(op, op.end())) throw WrongInput();
-			if (i != SFAIL && (!(op[i - 1] >= 48 && op[i - 1] <= 57) || !(op[i + 1] >= 48 && op[i + 1] <= 57))) throw WrongInput();
+			if (!i || i + 1 == IT_INDEX(op, op.end())) throw Error("Wrong input");
+			if (i != SFAIL && (!(op[i - 1] >= 48 && op[i - 1] <= 57) || !(op[i + 1] >= 48 && op[i + 1] <= 57))) throw Error("Wrong input");
 		}
 	}	
 
@@ -109,23 +121,23 @@ void RPN::parsing(std::string op){
 		while (*i == 32) i--;
 		if (is_operation(*i)) { _table.push(static_cast<float>(*i));    i--;}
 		else { while ((i != str.begin() && *i >= 48 && *i <= 57) || *i == 46) i--;
-			float val = ATOI_STR(str, i);    val > 10 ? throw ValueTooHigh() : _table.push(val);
+			float val = ATOI_STR(str, i);    val > 10 ? throw Error("Value too high") : _table.push(val);
 			if (is_operation(*i)) i--;}
 		i == str.begin() ? str.erase(IT_INDEX(str, i)) : str.erase(IT_INDEX(str, i) + 1);
 	}
 
-	//this checks that the ratio of operators to operands is good 
-	if (_table.size() < 3) throw WrongInput();
+	//this checks that the ratio of operators to operands is good
+	if (_table.size() < 3) throw Error("Wrong input");
 	float	ops = 0;
 	float	val = 0;
 	float	i = 0;
 	for (std::stack<float> cpy(_table); !cpy.empty(); cpy.pop()){
-		if (i < 3 && ops) throw WrongInput();
+		if (i < 3 && ops) throw Error("Wrong input");
 		if (cpy.top() > 10) ops++;
 		else val++;
 		i++;
 	}
-	if (ops >= val) throw WrongInput();
+	if (ops >= val) throw Error("Wrong input");
 }
 
 RPN::~RPN(){}

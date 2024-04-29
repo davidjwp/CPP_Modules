@@ -6,7 +6,7 @@
 /*   By: djacobs <djacobs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:22:34 by djacobs           #+#    #+#             */
-/*   Updated: 2024/04/10 16:03:59 by djacobs          ###   ########.fr       */
+/*   Updated: 2024/04/29 21:48:04 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,46 +34,43 @@ private:
 
 	void _BitcoinExchange();
 	void	reset_buffer();
-	lint	eval_date(std::string, std::string, unsigned short int);
+	lint	eval_date(std::string, std::string);
 
 	float cal_values(std::list<lint>::iterator, float);
 	lint	encode(sint,sint,sint);
 
-	//functor for the std::min_element function since i need to decode the date before using it
-	class Smallest{
-	private:
-		lint	_target;
-	public:
-		Smallest(unsigned int target): _target(target){}
-		bool operator()(lint A, lint B) const{return std::abs(A - _target) < std::abs(B - _target);}
-	};
-	class FilebadDay: public std::exception{
-		std::string	_File;
-	public:
-		virtual ~FilebadDay() throw(){}
-		FilebadDay(std::string file): _File(file + " file date wrong"){}
-		const char* what() const throw(){ return _File.c_str();}
-	};
-	class FileBadValue: public std::exception{
-		std::string	_File;
-	public:
-		virtual ~FileBadValue() throw(){}
-		FileBadValue(){}
-		FileBadValue(std::string file): _File(file + " file value wrong"){}
-		const char* what() const throw(){ return _File.c_str();}
-	};
 public:
-	class FileNotGiven: public std::exception{
-	public:
-		const char* what() const throw(){ return "no file given";}
-	};
-	class CannotOpenFile: public std::exception{
-	public:
-		const char* what() const throw(){ return "could not open file";}
-	};
 	~BitcoinExchange();
 	BitcoinExchange(std::ifstream&);
 
+};
+
+class Error: public std::exception{
+private:
+	std::string _msg;
+
+public:
+	Error();
+	virtual ~Error() throw();
+	Error(const Error&);
+	Error(const char*);
+	Error& operator=(const Error&);
+	virtual const char* what() const throw();
+};
+
+//functor for the std::min_element function since i need to decode the date before using it
+class Smallest{
+private:
+	lint	_target;
+
+public:
+
+	Smallest();
+	virtual ~Smallest();
+	Smallest(const Smallest&);
+	Smallest(const lint target);
+	bool operator()(lint, lint) const;
+	Smallest& operator=(const Smallest&);
 };
 
 #endif
